@@ -18,7 +18,7 @@ app.get("/*", (req, res) => {
 // Instantiate the client
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 
 const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
