@@ -1,0 +1,25 @@
+{
+  "name": "inkmart",
+  "version": "1.0.0",
+  "description": "Office stationary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Andisani Mudau",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sib-api-v3-sdk": "^8.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andisani-mudau/inkmart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Andisani-mudau/inkmart/issues"
+  },
+  "homepage": "https://github.com/Andisani-mudau/inkmart#readme"
+}
