@@ -22,6 +22,8 @@ const navigateTo = url => {
 };
 
 const router = async () => {
+    // Define the routes for the single-page application
+    // Each route object contains a path and its corresponding view component
     const routes = [
         { path: "/", view: Home },
         { path: "/blog", view: Blog },

@@ -13,8 +13,6 @@ app.get("/*", (req, res) => {
 //...
 // START OF FILE: email.js
 
-
-
 // Instantiate the client
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
