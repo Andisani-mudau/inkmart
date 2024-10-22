@@ -69,31 +69,41 @@ export default class extends AbstractView {
                             <img src="https://via.placeholder.com/300x200"" alt="Product Image">
                         </div>
                         <div class="popup-details">
-                            <h2 class="popup-title"></h2>
-                            <p class="popup-price"></p>
-                            <p class="popup-availability"></p>
-                            <p class="popup-description"></p>
+                            <h2 class="popup-title">HP Laptop 343</h2>
+                            <p class="popup-price">$3097,98</p>
+                            <div class="popup-availability-category">
+                                <p class="popup-availability">In Stock</p>
+                                <p class="popup-category">Computer</p>
+                            </div>
+                            <h3>Description:</h3>
+                            <p class="popup-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis ducimus eum hic. Iusto id recusandae illo maiores, perspiciatis ut illum quod vero temporibus. Eum ratione quis explicabo commodi itaque. Ratione. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis ducimus eum hic. Iusto id recusandae illo maiores, perspiciatis ut illum quod vero temporibus. Eum ratione quis explicabo commodi itaque. Ratione.</p>
                             <div class="popup-features">
                                 <h3>Features:</h3>
-                                <ul></ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
+                                <ul>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</ul>
                             </div>
-                            <p class="popup-category"></p>
+                            
                             <a href="#" class="cardLink add-to-cart">Add to Cart</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="cart-popup">
+                    
                     <div class="cart-content">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="">
+                                <img src="https://via.placeholder.com/300x200" alt="Product Image">
                             </div>
                             <div class="product-details">
-                                <h2 class="product-title"></h2>
-                                <p class="product-price"></p>
+                                <h2 class="product-title">Laptop 6558</h2>
+                                <p class="product-price">$367.97</p>
                             </div>
-                            <button class="remove-from-cart">Remove</button>
+                            <button class="remove-from-cart">...</button>
                         </div>
                     </div>
                     <div class="cart-summary">
@@ -110,31 +120,23 @@ export default class extends AbstractView {
                     <div class="checkout-form-content">
                         <h2>Checkout</h2>
                         <form>
-                            <div class="form-group">
-                                <label for="first-name">First Name</label>
-                                <input type="text" id="first-name" required>
-                                <label for="last-name">Last Name</label>
-                                <input type="text" id="last-name" required>
+                            <div class="form-group">                          
+                                <input type="text" id="first-name" required placeholder="First Name">
+                                <input type="text" id="last-name" required placeholder="Last Name">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" required>
+                                <input type="email" id="email" required placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="address-1">Address 1</label>
-                                <input type="text" id="address-1" required>
-                                <label for="address-2">Address 2</label>
-                                <input type="text" id="address-2" required>
-                                <label for="city">City</label>
-                                <input type="text" id="city" required>
-                                <label for="state">State</label>
-                                <input type="text" id="state" required>
-                                <label for="zip">Zip</label>
-                                <input type="text" id="zip" required>
+                                <input type="text" id="address-1" required placeholder="Address 1">
+                                <input type="text" id="address-2" required placeholder="Address 2">
+                                <input type="text" id="city" required placeholder="City">
+                                <input type="text" id="state" required placeholder="State">
+                                <input type="text" id="zip" required placeholder="Zip">
                             </div>
                             <div class="form-group">
-                                <label for="payment-method">Payment Method</label>
                                 <select id="payment-method" required>
+                                    <option value="payment-method" disabled selected>Payment Method</option>
                                     <option value="credit-card">Credit Card</option>
                                     <option value="debit-card">Debit Card</option>
                                     <option value="paypal">PayPal</option>
@@ -147,7 +149,7 @@ export default class extends AbstractView {
                 </div>
                 <div class="checkout-success-popup">
                     <div class="checkout-success-content">
-                        <h2>Checkout Success</h2>
+                        <h2>Checkout Success!</h2>
                         <p>Your order has been placed successfully.</p>
                         <p>Order ID: <span class="order-id"></span></p>
                         <button class="close-popup">Close</button>

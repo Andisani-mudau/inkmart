@@ -251,6 +251,7 @@ footer{
     justify-content: center;
     backdrop-filter: blur(30px);
     border-radius: var(--border-radius-2);
+    z-index: 300;
 }
 
 /* ... */
@@ -880,6 +881,7 @@ footer{
   border-radius: var(--border-radius-2);
   border: 1px solid rgba(95, 95, 95, 0.205); /* Subtle border */
   margin-top: -16px;
+  z-index: 3;
 }
 .search-sort-filter{
   display: flex;
@@ -1114,6 +1116,421 @@ summary::-webkit-details-marker {
   transition: all 0.3s ease;
 }
 .offers .product-list .card a:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+/* ... */
+#product-popup{
+  display: none;
+  pointer-events: painted;
+  position: fixed;
+  top: 20px; bottom: 20px; left: 20px; right: 20px;
+  backdrop-filter: blur(10px); /* Blurs background */
+  background: rgba(0, 0, 0, 0.2); /* Transparent white */
+  border-radius: var(--border-radius-2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.514); /* Soft shadow */
+  border: 1px solid rgba(95, 95, 95, 0.205); /* Subtle border */
+  z-index: 301;
+}
+#product-popup .popup-content{
+  display: flex;
+  height: 100%;
+}
+#product-popup .popup-content .close{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#product-popup .popup-content .popup-image{
+  max-width: 50%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: var(--border-radius-2) 0 0 var(--border-radius-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mask-image: linear-gradient(to right, transparent, black 0%, black 40%, transparent); /* Fade effect on edges */
+}
+#product-popup .popup-content .popup-image img{
+  height: 100%;
+}
+#product-popup .popup-content .popup-details{
+  margin: 40px;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 5px;
+  padding-right: 30px;
+}
+#product-popup .popup-content .popup-details h3{
+  font-size: var(--size-3);
+}
+.popup-title{
+  font-size: var(--font-size-4);
+}
+.popup-price{
+  font-size: var(--font-size-3);
+}
+.popup-availability-category{
+  margin-bottom: 20px;
+  display: flex;
+  gap: var(--size-2);
+}
+.popup-availability{
+  font-size: var(--font-size-1);
+  background-color: var(--primary-color-700);
+  border-radius: 10px;
+  padding: var(--size-1) var(--size-3);
+  width: fit-content;
+}
+.popup-category{
+  font-size: var(--font-size-1);
+  background-color: var(--primary-color-700);
+  border-radius: 10px;
+  padding: var(--size-1) var(--size-3);
+  width: fit-content;
+}
+.popup-features h3{
+  font-size: var(--size-3);
+  margin-top: 10px;
+}
+#product-popup .popup-content .popup-details .add-to-cart{   
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  font-size: var(--font-size-2);
+  padding: var(--size-2) var(--size-5);
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-2);
+}
+#product-popup .popup-content .popup-details .add-to-cart:hover{
+  background-color: var(--primary-color-800);
+} 
+#product-popup .popup-content .popup-details .add-to-cart:active{
+  background-color: var(--primary-color-900);
+}
+#product-popup .popup-content .popup-details .add-to-cart::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+#product-popup .popup-content .popup-details .add-to-cart:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+/* ... */
+.cart-popup{
+  display: none;
+  position: fixed;
+  top: 165px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: calc(100vw - (10px * 2));
+  height: calc(100vh - (120px * 2));
+  border-radius: var(--border-radius-3);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+.cart-popup .cart-content{
+  padding: var(--padding-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding-6);
+}
+.cart-popup .cart-content .product-card{
+  padding: 10px;
+  border-radius: var(--border-radius-2);
+  display: flex;
+  gap: var(--size-3);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: fit-content;
+}
+.cart-popup .cart-content .product-card .product-image{
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-1);
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.cart-popup .cart-content .product-card .product-image img{
+  height: 100%;
+}
+.cart-popup .cart-content .product-card .product-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cart-popup .cart-content .product-card .product-details .product-title{
+  font-size: var(--font-size-3);
+}
+.remove-from-cart{   
+  position: relative;
+  border: none;
+  text-align: center;
+  font-size: var(--font-size-2);
+  width: 50px;
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-1);
+}
+.remove-from-cart:hover{
+  background-color: var(--primary-color-800);
+} 
+.remove-from-cart:active{
+  background-color: var(--primary-color-900);
+}
+.remove-from-cart::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.remove-from-cart:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+.cart-summary{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.cart-summary p{
+  font-size: var(--font-size-2);
+}
+.checkout{   
+  position: relative;
+  border: none;
+  text-align: center;
+  font-size: var(--font-size-2);
+  padding: var(--size-2) var(--size-5);
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-2);
+}
+.checkout:hover{
+  background-color: var(--primary-color-800);
+} 
+.checkout:active{
+  background-color: var(--primary-color-900);
+}
+.checkout::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.checkout:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+.checkout-form-popup{
+  display: none;
+  position: fixed;
+  top: 165px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  width: calc(100vw - (10px * 2));
+  height: calc(100vh - (120px * 2));
+  overflow: hidden;
+  border-radius: var(--border-radius-2);
+  align-items: start;
+  
+}
+.checkout-form-popup div{
+  flex: 1;
+}
+.slider-of-product-images-that-was-in-cart{
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: var(--border-radius-2) 0 0 var(--border-radius-2);
+  display: flex;
+  justify-content: center;
+  mask-image: linear-gradient(to right, transparent, black 0%, black 40%, transparent); /* Fade effect on edges */
+}
+.slider-of-product-images-that-was-in-cart img{
+  height: 100%;
+}
+.checkout-form-content{
+  padding: 0 var(--padding-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--size-3);
+  max-width: 50%;
+  height: 100%;
+}
+.checkout-form-content form{
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+.checkout-form-content h2{
+  font-size: var(--font-size-4);
+}
+.form-group{
+  display: flex;
+  gap: var(--size-3);
+  flex-wrap: wrap;
+}
+.form-group input{
+  flex: 1;
+  border: none;
+  outline: none;
+  color: var(--tertiary-color-900);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--border-radius-1);
+}
+.form-group select{
+  flex: 1;
+  border: none;
+  outline: none;
+  color: var(--tertiary-color-900);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--border-radius-1);
+}
+.form-group select option{
+  background-color: var(--tertiary-color-50);
+  color: var(--tertiary-color-900);
+  padding: var(--size-3) var(--size-3);
+  border-radius: var(--border-radius-1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.form-group select option:hover{
+  background-color: var(--primary-color-100);
+}
+.checkout-form-content button{ 
+  width: fit-content;  
+  position: relative;
+  border: none;
+  text-align: center;
+  font-size: var(--font-size-2);
+  padding: var(--size-2) var(--size-5);
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-1);
+}
+.checkout-form-content button:hover{
+  background-color: var(--primary-color-800);
+} 
+.checkout-form-content button:active{
+  background-color: var(--primary-color-900);
+}
+.checkout-form-content button::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.checkout-form-content button:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+.checkout-success-popup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius-2);  
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--size-3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(95, 95, 95, 0.205);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.514);
+  z-index: 301;
+  padding: var(--padding-7);
+}
+.checkout-success-popup h2{
+  font-size: var(--font-size-4);
+  margin-bottom: var(--size-2);
+}
+.checkout-success-popup p{
+  font-size: var(--font-size-2);
+}
+.checkout-success-popup .order-id{
+  font-weight: bold;
+}
+.checkout-success-popup .close-popup{ 
+  margin-top: var(--size-3);
+  width: 100%;  
+  position: relative;
+  border: none;
+  text-align: center;
+  font-size: var(--font-size-2);
+  padding: var(--size-2) var(--size-5);
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-1);
+  cursor: pointer;
+}
+.checkout-success-popup .close-popup:hover{
+  background-color: var(--primary-color-800);
+} 
+.checkout-success-popup .close-popup:active{
+  background-color: var(--primary-color-900);
+}
+.checkout-success-popup .close-popup::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.checkout-success-popup .close-popup:hover::before {
   opacity: 1; /* Make the pseudo-element visible */
   filter: blur(20px); /* Add blur when hovered */
   background-color: var(--primary-color-800); /* Slightly darken */
