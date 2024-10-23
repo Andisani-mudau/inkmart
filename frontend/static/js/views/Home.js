@@ -21,7 +21,7 @@ export default class extends AbstractView {
                 <div class="row">
                   <div class="icon">1</div>
                   <div class="description">
-                    <h4>Winter</h4>
+                    <h4>Compters</h4>
                     <p>Winter has so much to offer - creative activities</p>
                   </div>
                 </div>
@@ -32,7 +32,7 @@ export default class extends AbstractView {
                 <div class="row">
                   <div class="icon">2</div>
                   <div class="description">
-                    <h4>Digital Technology</h4>
+                    <h4>Printers</h4>
                     <p>Gets better every day - stay tunned</p>
                   </div>
                 </div>
@@ -43,7 +43,7 @@ export default class extends AbstractView {
                 <div class="row">
                   <div class="icon">3</div>
                   <div class="description">
-                    <h4>Globalization</h4>
+                    <h4>Copiers</h4>
                     <p>Help people all over the world</p>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ export default class extends AbstractView {
                 <div class="row">
                   <div class="icon">4</div>
                   <div class="description">
-                    <h4>New technologies</h4>
+                    <h4>Telecommunications</h4>
                     <p>Space engineering becomes more and more advanced</p>
                   </div>
                 </div>
@@ -65,29 +65,44 @@ export default class extends AbstractView {
                 <div class="row">
                   <div class="icon">5</div>
                   <div class="description">
-                    <h4>New technologies</h4>
+                    <h4>Solar Panels</h4>
                     <p>Space engineering becomes more and more advanced</p>
                   </div>
                 </div>
               </label>
         </div>
-        <div class="container index_3">
+        <div class="container index_3 blog">
             <div class="holder">
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
-                </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
-                </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
-                </div>
+                  <div class="card">
+                  <div class="image">
+                      <img src="https://img.freepik.com/free-photo/advisor-agent-sitting-desk-table-startup-office-analyzing-financial-graphs-report-typing-company-strategy-african-american-businessman-working-overtime-investment-report-business-concept_482257-66470.jpg?t=st=1728705044~exp=1728708644~hmac=09249d25df7b873825d535fe44d50e9fd6a3c3294eb16141e8ab303e8cac9bf7&w=826" alt="">
+                  </div>
+                  <div class="content">
+                      <h2>Blog Heading Here</h2>
+                      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt harum quo expedita reiciendis suscipit voluptatem illo, neque, tempora iusto corrupti consequuntur culpa!</p>
+                  </div>
+                  <a href="/blog/1" class="cardLink" data-link>Read Blog</a>
+              </div>
+              <div class="card">
+                  <div class="image">
+                      <img src="https://img.freepik.com/free-photo/advisor-agent-sitting-desk-table-startup-office-analyzing-financial-graphs-report-typing-company-strategy-african-american-businessman-working-overtime-investment-report-business-concept_482257-66470.jpg?t=st=1728705044~exp=1728708644~hmac=09249d25df7b873825d535fe44d50e9fd6a3c3294eb16141e8ab303e8cac9bf7&w=826" alt="">
+                  </div>
+                  <div class="content">
+                      <h2>Blog Heading Here</h2>
+                      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt harum quo expedita reiciendis suscipit voluptatem illo, neque, tempora iusto corrupti consequuntur culpa!</p>
+                  </div>
+                  <a href="/blog/2" class="cardLink" data-link>Read Blog</a>
+              </div>
+              <div class="card">
+                  <div class="image">
+                      <img src="https://img.freepik.com/free-photo/advisor-agent-sitting-desk-table-startup-office-analyzing-financial-graphs-report-typing-company-strategy-african-american-businessman-working-overtime-investment-report-business-concept_482257-66470.jpg?t=st=1728705044~exp=1728708644~hmac=09249d25df7b873825d535fe44d50e9fd6a3c3294eb16141e8ab303e8cac9bf7&w=826" alt="">
+                  </div>
+                  <div class="content">
+                      <h2>Blog Heading Here</h2>
+                      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt harum quo expedita reiciendis suscipit voluptatem illo, neque, tempora iusto corrupti consequuntur culpa!</p>
+                  </div>
+                  <a href="/blog/3" class="cardLink" data-link>Read Blog</a>
+              </div>
             </div>
         </div>
         <div class="container index_4">

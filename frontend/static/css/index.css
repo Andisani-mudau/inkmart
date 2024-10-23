@@ -351,7 +351,6 @@ footer{
     justify-content: center;
     
   }
-  
   .card {
     align-items: flex-end;
     background-size: cover;
@@ -419,24 +418,28 @@ footer{
   }
   
   .card[for="c1"] {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
+    background-image: linear-gradient( #00000000, #00000000, #000000a4, #000000), url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
   }
   
   .card[for="c2"] {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
+    background-image: linear-gradient( #00000000, #00000000, #000000a4, #000000), url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
   }
   
   .card[for="c3"] {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
+    background-image: linear-gradient( #00000000, #00000000, #000000a4, #000000), url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
   }
   
   .card[for="c4"] {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
+    background-image: linear-gradient( #00000000, #00000000, #000000a4, #000000), url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
   }
   .card[for="c5"] {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
+    background-image: linear-gradient( #00000000, #00000000, #000000a4, #000000), url('https://hips.hearstapps.com/hmg-prod/images/first-day-of-winter-solstice-2021-1638278570.jpg?crop=0.8337777777777778xw:1xh;center,top&resize=1200:*');
   }
   /* ... */
+  .index_3{
+    
+    scroll-snap-align: start !important;
+  }
   .index_3 .holder{
     top: 50%; /* Move it 50% down */
     left: 54%; /* Move it 50% right */
