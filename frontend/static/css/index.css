@@ -482,14 +482,14 @@ footer{
 .index_5{
   display: flex;
   align-items: center;
-  justify-content: center;
+  
   flex-direction: column;
   margin: 0;
-  padding: 250px 0 100px 0;
+  height: 100%;
   box-sizing: border-box;
   gap: var(--size-5);
   overflow: scroll;
-  height: 100%;
+  
 }
 .icons{
   display: inline-flex;
@@ -638,9 +638,27 @@ footer{
   outline: none;
   
 }
+.newsLetter form textarea{
+  flex: 1;
+  display: block;
+  padding: 13px 20px 7px 20px;
+  border-radius: var(--border-radius-2);
+  border: none;
+  color: #000000;
+  min-height: 80px;
+}
+.newsLetter form textarea:hover{
+  border: none;
+  outline: none;
+}
+.newsLetter form textarea:focus{
+  border: none;
+  outline: none;
+  
+}
 .newsLetter form button{
   position: relative;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border-radius: var(--border-radius-2);
   border: none;
   background-color: var(--primary-color-700);
@@ -667,6 +685,106 @@ footer{
   transition: all 0.3s ease;
 }
 .newsLetter form button:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+/* ... */
+
+
+.rating-container {
+  padding: 40px;
+  backdrop-filter: blur(2px);
+  background-color: #0000001f;
+  border-radius: var(--size-3);
+  width: 100%;
+  max-width: 510px;
+}
+
+.rating-container h1 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: var(--font-size-4);
+  color: #fff;
+}
+
+.rating-container label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.rating-container input[type="email"], textarea {
+  width: 100%;
+  max-width: 470px;
+  flex: 1;
+  display: block;
+  padding: 10px 20px;
+  border-radius: var(--border-radius-2);
+  border: none;
+  color: #000000;
+  margin-bottom: var(--size-3);
+}
+
+.rating-container input[type="email"]:focus, textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 1rem;
+  width: 100%;
+  gap: var(--size-2);
+  flex-direction: row-reverse;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  font-size: var(--font-size-4);
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #ffc107;
+}
+.rating-container button{
+  position: relative;
+  padding: 10px 30px;
+  border-radius: var(--border-radius-2);
+  border: none;
+  background-color: var(--primary-color-700);
+  cursor: pointer;
+}
+.rating-container button:hover{
+  background-color: var(--primary-color-800);
+} 
+.rating-container button:active{
+  background-color: var(--primary-color-900);
+}
+.rating-container button::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-color: rgba(0, 0, 0, 0.2); /* Transparent black */
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.rating-container button:hover::before {
   opacity: 1; /* Make the pseudo-element visible */
   filter: blur(20px); /* Add blur when hovered */
   background-color: var(--primary-color-800); /* Slightly darken */
@@ -916,7 +1034,7 @@ footer{
 .search-sort-filter .search-bar button i{
   color: var(--tertiary-color-900);
 }
-.search-sort-filter .sort-bar{
+.search-sort-filter .sort{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -925,7 +1043,7 @@ footer{
   border-radius: var(--border-radius-1);
   background-color: var(--primary-color-50);
 }
-.search-sort-filter .sort-bar select{
+.search-sort-filter .sort select{
   border: none;
   outline: none;
   padding: var(--size-2) 0;
@@ -933,7 +1051,7 @@ footer{
   color: var(--tertiary-color-900);
   cursor: pointer;
 }
-.search-sort-filter .sort-bar select option{
+.search-sort-filter .sort select option{
   background-color: var(--primary-color-50);
   color: var(--tertiary-color-900);
   padding: var(--size-2) var(--size-3);
@@ -944,20 +1062,50 @@ footer{
   transition: all 0.3s ease;
   width: 200px !important;
 }
-.search-sort-filter .sort-bar select option:hover{
+/* .search-sort-filter .sort select option:hover{
   background-color: var(--primary-color-100) !important;
 } 
-.search-sort-filter .sort-bar select option:active{
+.search-sort-filter .sort select option:active{
   background-color: var(--primary-color-300);
 }
-.search-sort-filter .sort-bar select option:focus{
+.search-sort-filter .sort select option:focus{
   background-color: var(--primary-color-400);
 }
-.search-sort-filter .sort-bar select option:checked{
+.search-sort-filter .sort select option:checked{
   background-color: var(--primary-color-500);
+} */
+
+.search-sort-filter .filter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-3);
+  padding: 0 var(--size-3);
+  border-radius: var(--border-radius-1);
+  background-color: var(--primary-color-50);
+}
+.search-sort-filter .filter select{
+  border: none;
+  outline: none;
+  padding: var(--size-2) var(--size-4) var(--size-2) 0;
+  background-color: transparent;
+  color: var(--tertiary-color-900);
+  cursor: pointer;
+}
+.search-sort-filter .filter select option{
+  background-color: var(--primary-color-50);
+  color: var(--tertiary-color-900);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--border-radius-1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px !important;
 }
 
-details {
+
+/* details {
   position: relative;
   display: flexbox;
   align-items: center;
@@ -974,13 +1122,13 @@ summary {
   padding: var(--size-2) var(--size-3);
   background-color: transparent;
   color: var(--tertiary-color-900);
-  cursor: pointer; /* Remove the default outline */
+  cursor: pointer; 
   display: flexbox;
   color: var(--tertiary-color-900);
   gap: var(--size-3);
   align-items: center;
   justify-content: space-between;
-}
+} */
 /* summary p{
   font-size: var(--font-size-2);
   color: var(--tertiary-color-900);
@@ -990,10 +1138,10 @@ summary i{
   font-size: var(--font-size-2);
   color: var(--tertiary-color-900);
   
-} */
+} 
 summary::-webkit-details-marker {
-  display: none; /* Hide the default dropdown marker */
-}
+  display: none; 
+}*/
 
 /* Style for the options inside the dropdown */
 .dropdown-content {
@@ -1137,7 +1285,7 @@ summary::-webkit-details-marker {
   display: flex;
   height: 100%;
 }
-#product-popup .popup-content .close{
+.close{
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1244,6 +1392,8 @@ summary::-webkit-details-marker {
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  z-index: 30;
+  backdrop-filter: blur(10px);
 }
 .cart-popup .cart-content{
   padding: var(--padding-6);
@@ -1478,7 +1628,7 @@ summary::-webkit-details-marker {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: var(--border-radius-2);  
+  border-radius: var(--border-radius-2);
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -1531,6 +1681,86 @@ summary::-webkit-details-marker {
   transition: all 0.3s ease;
 }
 .checkout-success-popup .close-popup:hover::before {
+  opacity: 1; /* Make the pseudo-element visible */
+  filter: blur(20px); /* Add blur when hovered */
+  background-color: var(--primary-color-800); /* Slightly darken */
+}
+.card-view-holder{
+  width: 100vw;
+  position: relative;
+display: flex;
+align-items: start;
+justify-content: center;
+flex-wrap: wrap;
+top: unset; /* Move it 50% down */
+  left: unset; /* Move it 50% right */
+  transform: unset; /* Center by moving back half its size */
+  
+}
+.card-view{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-view .image{
+  overflow: hidden;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mask-image: linear-gradient(to bottom, transparent, black 0%, black 50%, transparent); /* Fade effect on edges */
+}
+.card-view .image img{
+  width: 100%;
+}
+.card-view .content{
+  
+  padding: var(--padding-7);
+  margin-top: -60px; 
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+.card-view .content h2{
+  font-size: var(--font-size-3); 
+}
+.card-view .content p{
+  mask-image: linear-gradient(to bottom, transparent, black 0%, black 50%, transparent); /* Fade effect on edges */
+}
+.card-view a{   
+  width: fit-content;
+  position: fixed;
+  top: 80px; left: 20px; right: 20px;
+  text-align: center;
+  font-size: var(--font-size-2);
+  padding: var(--size-2) var(--size-2);
+  background-color: var(--primary-color-700);
+  border-radius: var(--border-radius-2);
+}
+.card-view a:hover{
+  background-color: var(--primary-color-800);
+} 
+.card-view a:active{
+  background-color: var(--primary-color-900);
+}
+.card-view a::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  
+  z-index: -1; /* Sends the box behind the main div */
+  border-radius: var(--border-radius-3);
+  opacity: 0; /* Start hidden */
+  transition: all 0.3s ease;
+}
+.card-view a:hover::before {
   opacity: 1; /* Make the pseudo-element visible */
   filter: blur(20px); /* Add blur when hovered */
   background-color: var(--primary-color-800); /* Slightly darken */

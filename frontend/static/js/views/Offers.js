@@ -21,24 +21,24 @@ export default class extends AbstractView {
                             <input type="text" placeholder="Search">
                             <button><i class="fas fa-search"></i></button>
                         </div>
-                        <details>
-                            <summary>Sort by</summary>
-                            <div class="dropdown-content">
-                                <a href="#">Newest</a>
-                                <a href="#">Oldest</a>
-                                <a href="#">Price (Low to High)</a>
-                                <a href="#">Price (High to Low)</a>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>Filter by</summary>
-                            <div class="dropdown-content">
-                                <a href="#">All</a>
-                                <a href="#">Category 1</a>
-                                <a href="#">Category 2</a>
-                                <a href="#">Category 3</a>
-                            </div>
-                        </details>
+                        <div class="sort">
+                            <select name="sort">
+                                <option value="" disabled selected>Sort by</option>
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="price-low-high">Price (Low to High)</option>
+                                <option value="price-high-low">Price (High to Low)</option>
+                            </select>
+                        </div>
+                        <div class="filter">
+                            <select name="filter">
+                                <option value="" disabled selected>Filter by</option>
+                                <option value="all">All</option>
+                                <option value="category1">Category 1</option>
+                                <option value="category2">Category 2</option>
+                                <option value="category3">Category 3</option>
+                            </select>
+                        </div>
                     </div>
                     <button class="cart-icon-with-number">
                         <i class="fas fa-shopping-cart"></i>
@@ -93,7 +93,7 @@ export default class extends AbstractView {
                 </div>
 
                 <div class="cart-popup">
-                    
+                    <span class="close">&times;</span>
                     <div class="cart-content">
                         <div class="product-card">
                             <div class="product-image">
@@ -103,7 +103,7 @@ export default class extends AbstractView {
                                 <h2 class="product-title">Laptop 6558</h2>
                                 <p class="product-price">$367.97</p>
                             </div>
-                            <button class="remove-from-cart">...</button>
+                            <button class="remove-from-cart"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="cart-summary">
@@ -114,6 +114,7 @@ export default class extends AbstractView {
                 </div>
 
                 <div class="checkout-form-popup">
+                    <span class="close">&times;</span>
                     <div class="slider-of-product-images-that-was-in-cart">
                         <img src="https://via.placeholder.com/300x200" alt="Product Image">
                     </div>
@@ -159,7 +160,4 @@ export default class extends AbstractView {
         `;
     }
 
-    async after_render() {
-        
-    }
 }
