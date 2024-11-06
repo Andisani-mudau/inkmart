@@ -11,7 +11,10 @@
   "author": "Andisani Mudau",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "nodemailer": "^6.9.16",
     "sib-api-v3-sdk": "^8.5.0"
   },
   "repository": {

@@ -912,7 +912,7 @@ footer{
 .blog .holder .card .content p{
     mask-image: linear-gradient(to bottom, transparent, black 0%, black 50%, transparent); /* Fade effect on edges */
 }
-.blog .holder .card a{   
+.blog .holder .card a, .button-to-cart{   
     position: absolute;
     bottom: 20px; left: 20px; right: 20px;
     text-align: center;
@@ -920,14 +920,17 @@ footer{
     padding: var(--size-2) var(--size-5);
     background-color: var(--primary-color-700);
     border-radius: var(--border-radius-2);
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
-.blog .holder .card a:hover{
+.blog .holder .card a:hover, .button-to-cart:hover{
     background-color: var(--primary-color-800);
 } 
-.blog .holder .card a:active{
+.blog .holder .card a:active, .button-to-cart:active  {
     background-color: var(--primary-color-900);
 }
-.blog .holder .card a::before{
+.blog .holder .card a::before, .button-to-cart::before{
     position: absolute;
     content: '';
     top: 50%;
@@ -941,7 +944,7 @@ footer{
     opacity: 0; /* Start hidden */
     transition: all 0.3s ease;
 }
-.blog .holder .card a:hover::before {
+.blog .holder .card a:hover::before, .button-to-cart:hover::before {
     opacity: 1; /* Make the pseudo-element visible */
     filter: blur(20px); /* Add blur when hovered */
     background-color: var(--primary-color-800); /* Slightly darken */

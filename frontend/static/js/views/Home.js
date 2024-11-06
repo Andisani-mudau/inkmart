@@ -12,7 +12,7 @@ export default class extends AbstractView {
           <div class="welcome">
               <h1 class="indexHeading">Your Office Equipment</h1>
               <p class="indexParagrapgh">Just so you know, Inkmart is your local supplier of consumables and stationary in Limpopo. We're just saying!</p>
-              <a href="/about" class="readMore">Read more...</a>
+              <a href="/about" class="readMore" data-link>Read more...</a>
           </div>
         </div>
         <div class="container index_2">
