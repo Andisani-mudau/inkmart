@@ -249,22 +249,22 @@ export default class extends AbstractView {
             <div class="companies logo-slider">
               <div class="slider-track">
                 <!-- Add your 7 logo SVGs here -->
-                <div class="company-logo"><img src="#" alt="Logo 1"></div>
-                <div class="company-logo"><img src="#" alt="Logo 2"></div>
-                <div class="company-logo"><img src="#" alt="Logo 3"></div>
-                <div class="company-logo"><img src="#" alt="Logo 4"></div>
-                <div class="company-logo"><img src="#" alt="Logo 5"></div>
-                <div class="company-logo"><img src="#" alt="Logo 6"></div>
-                <div class="company-logo"><img src="#" alt="Logo 7"></div>
+                <div class="company-logo"><img src="static/css/company-logos/brother.svg" alt="Logo 1"></div>
+                <div class="company-logo"><img src="static/css/company-logos/olivetti.svg" alt="Logo 2"></div>
+                <div class="company-logo"><img src="static/css/company-logos/hp.svg" alt="Logo 3"></div>
+                <div class="company-logo"><img src="static/css/company-logos/kyocera.svg" alt="Logo 4"></div>
+                <div class="company-logo"><img src="static/css/company-logos/lexmark.svg" alt="Logo 5"></div>
+                <div class="company-logo"><img src="static/css/company-logos/riso.svg" alt="Logo 6"></div>
+                <div class="company-logo"><img src="static/css/company-logos/samsung.svg" alt="Logo 7"></div>
     
                 <!-- Repeat the same logos for infinite loop -->
-                <div class="company-logo"><img src="#" alt="Logo 1"></div>
-                <div class="company-logo"><img src="#" alt="Logo 2"></div>
-                <div class="company-logo"><img src="#" alt="Logo 3"></div>
-                <div class="company-logo"><img src="#" alt="Logo 4"></div>
-                <div class="company-logo"><img src="#" alt="Logo 5"></div>
-                <div class="company-logo"><img src="#" alt="Logo 6"></div>
-                <div class="company-logo"><img src="#" alt="Logo 7"></div>
+                <div class="company-logo"><img src="static/css/company-logos/brother.svg" alt="Logo 1"></div>
+                <div class="company-logo"><img src="static/css/company-logos/olivetti.svg" alt="Logo 2"></div>
+                <div class="company-logo"><img src="static/css/company-logos/hp.svg" alt="Logo 3"></div>
+                <div class="company-logo"><img src="static/css/company-logos/kyocera.svg" alt="Logo 4"></div>
+                <div class="company-logo"><img src="static/css/company-logos/lexmark.svg" alt="Logo 5"></div>
+                <div class="company-logo"><img src="static/css/company-logos/riso.svg" alt="Logo 6"></div>
+                <div class="company-logo"><img src="static/css/company-logos/samsung.svg" alt="Logo 7"></div>
               </div>
             </div>
         </div>

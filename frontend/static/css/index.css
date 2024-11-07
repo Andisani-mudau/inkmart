@@ -813,7 +813,6 @@ footer{
 .company-logo {
   height: 80px; /* Set height of logos, width adjusts automatically */
   min-width: 287px;
-  background-color: #000000;
   opacity: 0.8; /* Slight transparency */
   filter: grayscale(100%); /* Converts the logo to full grayscale */
   filter: brightness(100%);
