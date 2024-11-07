@@ -107,48 +107,92 @@ export default class extends AbstractView {
         </div>
         <div class="container index_4">
             <div class="holder">
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+              <div class="card" id="card-1">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  
                 </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+                <p class="comment">This is a small comment.</p>
+              </div>
+              <div class="card" id="card-2">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
                 </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+                <p class="comment">This is a small comment.</p>
+              </div>
+              <div class="card" id="card-3">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
                 </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+                <p class="comment">This is a small comment.</p>
+              </div>
+              <div class="card" id="card-4">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
                 </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+                <p class="comment">This is a small comment.</p>
+              </div>
+              <div class="card" id="card-5">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
                 </div>
-                <div class="card">
-                    <div class="image"><div></div></div>
-                    <div class="content"></div>
-                    <a href="#" class="cardLink"></a>
+                <p class="comment">This is a small comment.</p>
+              </div>
+              <div class="card" id="card-6">
+                <div class="content">
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
                 </div>
+                <p class="comment">This is a small comment.</p>
+              </div>
             </div>
         </div>
         <div class="container index_5">
             <div class="newsLetter">
-              <div class="newsLatterHeading">
-                <h2>Subscribe to our news letter!</h2>
-                <p>Get notified about tips, tricks and blogs on how to best use your office environment.</p>
-              </div>
-              <form action="" method="post">
-                <input type="email" name="email" id="" placeholder="Enter your email address">
-                <button type="submit">Sign Up</button>
-              </form>
+                <div class="newsLatterHeading">
+                    <h2>Subscribe to our newsletter!</h2>
+                    <p>Get notified about tips, tricks, and blogs on how to best use your office environment.</p>
+                </div>
+                <form id="newsletter-form">
+                    <input type="email" name="email" id="newsletter-email" placeholder="Enter your email address" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div id="newsletter-response" style="margin-top: 10px;"></div>
             </div>
             <div class="icons">
                 <a href="#">
@@ -226,4 +270,38 @@ export default class extends AbstractView {
         </div>
         `;
     }
+
+    async afterRender() {
+      // Handle Newsletter Form Submission
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterResponse = document.getElementById('newsletter-response');
+
+      newsletterForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          newsletterResponse.textContent = 'Subscribing...';
+
+          const email = document.getElementById('newsletter-email').value;
+
+          try {
+              const response = await fetch('/send-newsletter', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ email })
+              });
+
+              if (response.ok) {
+                  newsletterResponse.textContent = 'Successfully subscribed to the newsletter!';
+                  newsletterForm.reset();
+              } else {
+                  const errorData = await response.json();
+                  newsletterResponse.textContent = `Error: ${errorData.error}`;
+              }
+          } catch (error) {
+              newsletterResponse.textContent = 'An unexpected error occurred.';
+              console.error('Error:', error);
+          }
+      });
+  }
 }

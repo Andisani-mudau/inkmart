@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import Mailjet from 'node-mailjet';
+import bodyParser from 'body-parser';
 
 // __dirname replacement in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -21,18 +22,34 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(bodyParser.json());
 
 // Serve static files
 app.use('/static', express.static(path.resolve(__dirname, 'frontend', 'static')));
+
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request for ${req.url}`);
+  next();
+});
 
 // Serve the main HTML file
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
 });
 
+app.get('/send-order', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'req.json'));
+});
+app.get('/send-rating', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'req2.json'));
+});
+app.get('/send-newsletter', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'req.json'));
+});
 // API endpoint to handle order emails
 app.post('/send-order', async (req, res) => {
   const { formData, cart } = req.body;
+
 
   // Generate a unique order ID
   const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
@@ -125,92 +142,126 @@ app.post('/send-order', async (req, res) => {
   }
 });
 
-// New API endpoint to handle contact form submissions
+// New endpoint to handle Contact Form submissions
 app.post('/send-contact', async (req, res) => {
-  const { email, message } = req.body;
+    const { email, message } = req.body;
 
-  if (!email || !message) {
-    return res.status(400).json({ error: 'Email and message are required.' });
-  }
-
-  // Generate a unique contact ID
-  const contactId = Math.random().toString(36).substr(2, 9).toUpperCase();
-
-  // Construct the email body using form data
-  const emailBody = `
-    <div style="font-family: Arial, sans-serif;">
-      <h2>New Contact Message #${contactId}</h2>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-    </div>
-  `;
-
-  try {
-    // Send email to the business
-    await mailjetClient.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: 'andisanimudau101@gmail.com',
-            Name: 'Your Company Name'
-          },
-          To: [
-            {
-              Email: 'info@businessdev.co.za',
-              Name: 'Business'
-            }
-          ],
-          Subject: `New Contact Message #${contactId}`,
-          TextPart: 'New contact message received.',
-          HTMLPart: emailBody
-        }
-      ]
-    });
-
-    // Optionally, send a confirmation email to the user
-    const customerEmailBody = `
-      <div style="font-family: Arial, sans-serif;">
-        <h2>Message Received #${contactId}</h2>
-        <p>Thank you for reaching out to us! We have received your message and will get back to you shortly.</p>
-        <p><strong>Your Message:</strong></p>
-        <p>${message}</p>
-      </div>
+    const emailBody = `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>New Contact Message</h2>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message}</p>
+        </div>
     `;
 
-    await mailjetClient.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: 'andisanimudau101@gmail.com',
-            Name: 'Your Company Name'
-          },
-          To: [
-            {
-              Email: email,
-              Name: 'Valued Customer'
-            }
-          ],
-          Subject: `We Received Your Message #${contactId}`,
-          TextPart: 'Thank you for contacting us.',
-          HTMLPart: customerEmailBody
-        }
-      ]
-    });
+    try {
+        await mailjetClient.post('send', { version: 'v3.1' }).request({
+            Messages: [
+                {
+                    From: {
+                        Email: 'andisanimudau101@gmail.com',
+                        Name: 'Your Company Name'
+                    },
+                    To: [
+                        {
+                            Email: 'info@businessdev.co.za',
+                            Name: 'Business'
+                        }
+                    ],
+                    Subject: `New Contact Message from ${email}`,
+                    TextPart: 'You have received a new contact message.',
+                    HTMLPart: emailBody
+                }
+            ]
+        });
 
-    // Respond with success and contact ID
-    res.json({
-      Sent: [
-        {
-          Email: email,
-          MessageID: contactId
-        }
-      ]
-    });
-  } catch (error) {
-    console.error('Error sending contact email:', error.statusCode ? error.response.body : error);
-    res.status(500).json({ error: 'Failed to send contact email' });
-  }
+        res.json({ message: 'Contact message sent successfully!' });
+    } catch (error) {
+        console.error('Error sending contact email:', error.statusCode ? error.response.body : error);
+        res.status(500).json({ error: 'Failed to send contact message' });
+    }
+});
+
+// New endpoint to handle Rating Form submissions
+app.post('/send-rating', async (req, res) => {
+    const { rating, email, comments } = req.body;
+
+    const emailBody = `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>New Customer Rating</h2>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Rating:</strong> ${rating} / 5</p>
+            <p><strong>Comments:</strong></p>
+            <p>${comments}</p>
+        </div>
+    `;
+
+    try {
+        await mailjetClient.post('send', { version: 'v3.1' }).request({
+            Messages: [
+                {
+                    From: {
+                        Email: 'andisanimudau101@gmail.com',
+                        Name: 'Your Company Name'
+                    },
+                    To: [
+                        {
+                            Email: 'feedback@businessdev.co.za',
+                            Name: 'Business Feedback'
+                        }
+                    ],
+                    Subject: `New Customer Rating from ${email}`,
+                    TextPart: 'You have received a new customer rating.',
+                    HTMLPart: emailBody
+                }
+            ]
+        });
+
+        res.json({ message: 'Rating submitted successfully!' });
+    } catch (error) {
+        console.error('Error sending rating email:', error.statusCode ? error.response.body : error);
+        res.status(500).json({ error: 'Failed to submit rating' });
+    }
+});
+
+// New endpoint to handle Newsletter Subscriptions
+app.post('/send-newsletter', async (req, res) => {
+    const { email } = req.body;
+    const emailBody = `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>New Newsletter Subscription</h2>
+            <p><strong>Email:</strong> ${email}</p>
+            <p>Thank you for subscribing to our newsletter!</p>
+        </div>
+    `;
+
+    try {
+        await mailjetClient.post('send', { version: 'v3.1' }).request({
+            Messages: [
+                {
+                    From: {
+                        Email: 'andisanimudau101@gmail.com',
+                        Name: 'Your Company Name'
+                    },
+                    To: [
+                        {
+                            Email: email,
+                            Name: 'Subscriber'
+                        }
+                    ],
+                    Subject: 'Subscription Confirmation',
+                    TextPart: 'Thank you for subscribing to our newsletter.',
+                    HTMLPart: emailBody
+                }
+            ]
+        });
+
+        res.json({ message: 'Newsletter subscription successful!' });
+    } catch (error) {
+        console.error('Error sending newsletter email:', error.statusCode ? error.response.body : error);
+        res.status(500).json({ error: 'Failed to subscribe to newsletter' });
+    }
 });
 
 // Server listening code
