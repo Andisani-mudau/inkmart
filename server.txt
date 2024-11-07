@@ -1,0 +1,105 @@
+require('dotenv').config();
+const express = require("express");
+const path = require("path");
+// Include the Mailjet library
+const mailjet = require('node-mailjet').connect(
+  process.env.MJ_APIKEY_PUBLIC,
+  process.env.MJ_APIKEY_PRIVATE
+);
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
+
+app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "index.html"));
+});
+
+// New API endpoint to handle order emails
+app.post('/send-order', async (req, res) => {
+    const { formData, cart } = req.body;
+
+    // Generate a unique order ID
+    const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
+
+    // Construct the email body using form data and cart items
+    const emailBody = `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>New Order Submission #${orderId}</h2>
+            <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Address 1:</strong> ${formData.address1}</p>
+            <p><strong>Address 2:</strong> ${formData.address2}</p>
+            <p><strong>City:</strong> ${formData.city}</p>
+            <p><strong>State:</strong> ${formData.state}</p>
+            <p><strong>ZIP:</strong> ${formData.zip}</p>
+            <p><strong>Payment Method:</strong> ${formData.paymentMethod}</p>
+            <h3>Order Details:</h3>
+            <ul>
+                ${cart.map(item => `<li>${item.title} - $${item.price.toFixed(2)}</li>`).join('')}
+            </ul>
+            <p><strong>Total:</strong> $${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
+        </div>
+    `;
+
+    // Construct the customer confirmation email
+    const customerEmailBody = `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>Order Confirmation #${orderId}</h2>
+            <p>Thank you for your order! Here are your order details:</p>
+            ${emailBody}
+            <p>We will contact you shortly with further information.</p>
+        </div>
+    `;
+
+    try {
+        // Send email to the business
+        const businessEmailRequest = mailjet.post('send').request({
+            FromEmail: 'andisanimudau101@gmail.com',
+            FromName: 'Your Company Name',
+            Subject: `New Order Submission #${orderId}`,
+            'Text-part': 'New order received.',
+            'Html-part': emailBody,
+            Recipients: [{ Email: 'info@businessdev.co.za' }],
+        });
+
+        await businessEmailRequest;
+
+        // Send confirmation email to the customer
+        const customerEmailRequest = mailjet.post('send').request({
+            FromEmail: 'andisanimudau101@gmail.com',
+            FromName: 'Your Company Name',
+            Subject: `Order Confirmation #${orderId}`,
+            'Text-part': 'Thank you for your order.',
+            'Html-part': customerEmailBody,
+            Recipients: [{ Email: formData.email }],
+        });
+
+        await customerEmailRequest;
+
+        // Respond with success and order ID
+        res.json({
+            Sent: [
+                {
+                    Email: formData.email,
+                    MessageID: orderId
+                }
+            ]
+        });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: 'Failed to send email' });
+    }
+});
+
+// Existing server listening code
+const server = app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+}).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log(`Port ${PORT} is busy. Trying port ${PORT + 1}`);
+        server.listen(PORT + 1);
+    } else {
+        console.error('Server error:', err);
+    }
+});

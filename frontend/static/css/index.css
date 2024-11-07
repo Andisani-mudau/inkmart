@@ -349,6 +349,7 @@ footer{
     flex-wrap: nowrap;
     /* height: 400px; */
     justify-content: center;
+    align-items: center;
     
   }
   .card {
@@ -363,6 +364,7 @@ footer{
     overflow: hidden;
     transition: .6s cubic-bezier(.28,-0.03,0,.99);
     width: 80px;
+    height: 400px;
   }
   
   .card > .row {
@@ -409,7 +411,7 @@ footer{
   }
   
   .index_2 input:checked + label {
-    width: 600px;
+    width: 500px;
   }
   
   .index_2 input:checked + label .description {
@@ -794,7 +796,8 @@ footer{
 }
 /* ... */
 .logo-slider {
-  width: 80%; /* Adjust width as needed */
+  margin-top: 40px;
+  width: 90vw; /* Adjust width as needed */
   overflow: hidden; /* Hide overflow to create the slider effect */
   position: relative; /* Position for mask */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* Fade effect on edges */
@@ -804,17 +807,24 @@ footer{
   display: flex;
   animation: scroll 30s linear infinite; /* Infinite smooth animation */
   align-items: center; /* Align logos in the center vertically */
+  gap: 5px;
 }
 
-.logo {
-  height: 100px; /* Set height of logos, width adjusts automatically */
-  margin-right: 50px; /* Space between logos */
+.company-logo {
+  height: 80px; /* Set height of logos, width adjusts automatically */
+  min-width: 287px;
+  background-color: #000000;
   opacity: 0.8; /* Slight transparency */
   filter: grayscale(100%); /* Converts the logo to full grayscale */
   filter: brightness(100%);
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.company-logo img{
+  height: 100%;
+}
 @keyframes scroll {
   0% {
       transform: translateX(0); /* Start from the first logo */
@@ -1396,8 +1406,8 @@ summary::-webkit-details-marker {
   height: calc(100vh - (120px * 2));
   border-radius: var(--border-radius-3);
   overflow: hidden;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: start;
   z-index: 30;
   backdrop-filter: blur(10px);
 }
@@ -1770,4 +1780,18 @@ top: unset; /* Move it 50% down */
   opacity: 1; /* Make the pseudo-element visible */
   filter: blur(20px); /* Add blur when hovered */
   background-color: var(--primary-color-800); /* Slightly darken */
+}
+/* .. */
+.close{
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.close:hover{
+  background-color: var(--primary-color-700);
 }

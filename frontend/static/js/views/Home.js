@@ -205,23 +205,23 @@ export default class extends AbstractView {
             <div class="companies logo-slider">
               <div class="slider-track">
                 <!-- Add your 7 logo SVGs here -->
-                <img src="company-logos/brother-4.svg" alt="Logo 1" class="logo">
-                <img src="company-logos/hp-2.svg" alt="Logo 2" class="logo">
-                <img src="company-logos/kyocera-logo.svg" alt="Logo 3" class="logo">
-                <img src="company-logos/lexmark-1 (1).svg" alt="Logo 4" class="logo">
-                <img src="company-logos/olivetti.svg" alt="Logo 5" class="logo">
-                <img src="company-logos/riso.svg" alt="Logo 6" class="logo">
-                <img src="company-logos/samsung-8.svg" alt="Logo 7" class="logo">
+                <div class="company-logo"><img src="#" alt="Logo 1"></div>
+                <div class="company-logo"><img src="#" alt="Logo 2"></div>
+                <div class="company-logo"><img src="#" alt="Logo 3"></div>
+                <div class="company-logo"><img src="#" alt="Logo 4"></div>
+                <div class="company-logo"><img src="#" alt="Logo 5"></div>
+                <div class="company-logo"><img src="#" alt="Logo 6"></div>
+                <div class="company-logo"><img src="#" alt="Logo 7"></div>
     
                 <!-- Repeat the same logos for infinite loop -->
-                <img src="company-logos/brother-4.svg" alt="Logo 1" class="logo">
-                <img src="company-logos/hp-2.svg" alt="Logo 2" class="logo">
-                <img src="company-logos/kyocera-logo.svg" alt="Logo 3" class="logo">
-                <img src="company-logos/lexmark-1 (1).svg" alt="Logo 4" class="logo">
-                <img src="company-logos/olivetti.svg" alt="Logo 5" class="logo">
-                <img src="company-logos/riso.svg" alt="Logo 6" class="logo">
-                <img src="company-logos/samsung-8.svg" alt="Logo 7" class="logo">
-            </div>
+                <div class="company-logo"><img src="#" alt="Logo 1"></div>
+                <div class="company-logo"><img src="#" alt="Logo 2"></div>
+                <div class="company-logo"><img src="#" alt="Logo 3"></div>
+                <div class="company-logo"><img src="#" alt="Logo 4"></div>
+                <div class="company-logo"><img src="#" alt="Logo 5"></div>
+                <div class="company-logo"><img src="#" alt="Logo 6"></div>
+                <div class="company-logo"><img src="#" alt="Logo 7"></div>
+              </div>
             </div>
         </div>
         `;

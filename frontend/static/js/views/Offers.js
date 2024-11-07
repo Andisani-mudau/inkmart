@@ -4,77 +4,177 @@ export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.setTitle("Offers");
-        this.products = [
-            {
-                id: 1,
-                title: "HP Laptop 343",
-                description: "High-performance laptop with latest specifications",
-                price: 999.99,
-                image: "https://via.placeholder.com/300x200",
-                availability: "In Stock",
-                category: "Laptops",
-                features: [
-                    "8GB RAM",
-                    "512GB SSD",
-                    "Intel Core i5 Processor",
-                    "15.6-inch FHD Display",
-                    "Windows 11",
-                    "Backlit Keyboard"
-                ]
-            },
-            {
-                id: 2,
-                title: "Dell XPS 15",
-                description: "Premium ultrabook with 4K display and exceptional build quality",
-                price: 1499.99,
-                image: "https://via.placeholder.com/300x200",
-                availability: "In Stock",
-                category: "Laptops",
-                features: [
-                    "16GB RAM",
-                    "1TB NVMe SSD",
-                    "Intel Core i7 Processor",
-                    "15.6-inch 4K OLED Display",
-                    "NVIDIA RTX 3050 Ti",
-                    "Thunderbolt 4 Ports"
-                ]
-            },
-            {
-                id: 3,
-                title: "MacBook Pro",
-                description: "Powerful laptop for creative professionals with M2 chip",
-                price: 1999.99,
-                image: "https://via.placeholder.com/300x200",
-                availability: "Limited Stock",
-                category: "Laptops",
-                features: [
-                    "32GB Unified Memory",
-                    "1TB SSD Storage",
-                    "Apple M2 Pro Chip",
-                    "14-inch Liquid Retina XDR Display",
-                    "ProMotion Technology",
-                    "Studio-quality Mic Array"
-                ]
-            },
-            {
-                id: 4,
-                title: "ThinkPad X1",
-                description: "Business laptop with excellent build quality and security features",
-                price: 1299.99,
-                image: "https://via.placeholder.com/300x200",
-                availability: "In Stock",
-                category: "Laptops",
-                features: [
-                    "16GB DDR4 RAM",
-                    "512GB PCIe SSD",
-                    "Intel Core i7 vPro",
-                    "14-inch QHD Display",
-                    "Fingerprint Reader",
-                    "Military-grade Durability"
-                ]
-            }
-        ];
+        this.allProducts = [
+                // Start of Selection
+                {
+                    id: 1,
+                    title: "HP Laptop 343",
+                    description: "High-performance laptop with latest specifications",
+                    price: 999.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-05",
+                    features: [
+                        "8GB RAM",
+                        "512GB SSD",
+                        "Intel Core i5 Processor",
+                        "15.6-inch FHD Display",
+                        "Windows 11",
+                        "Backlit Keyboard"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Dell XPS 15",
+                    description: "Premium ultrabook with 4K display and exceptional build quality",
+                    price: 1499.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-05",
+                    features: [
+                        "16GB RAM",
+                        "1TB NVMe SSD",
+                        "Intel Core i7 Processor",
+                        "15.6-inch 4K OLED Display",
+                        "NVIDIA RTX 3050 Ti",
+                        "Thunderbolt 4 Ports"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "MacBook Pro",
+                    description: "Powerful laptop for creative professionals with M2 chip",
+                    price: 1999.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "Limited Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-05",
+                    features: [
+                        "32GB Unified Memory",
+                        "1TB SSD Storage",
+                        "Apple M2 Pro Chip",
+                        "14-inch Liquid Retina XDR Display",
+                        "ProMotion Technology",
+                        "Studio-quality Mic Array"
+                    ]
+                },
+                    
+                {
+                    id: 4,
+                    title: "ThinkPad X1",
+                    description: "Business laptop with excellent build quality and security features",
+                    price: 1299.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-05",
+                    features: [
+                        "16GB DDR4 RAM",
+                        "512GB PCIe SSD",
+                        "Intel Core i7 vPro",
+                        "14-inch QHD Display",
+                        "Fingerprint Reader",
+                        "Military-grade Durability"
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "HP Spectre x360",
+                    description: "Versatile 2-in-1 laptop with a sleek design and long battery life",
+                    price: 1399.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-06",
+                    features: [
+                        "16GB RAM",
+                        "1TB NVMe SSD",
+                        "Intel Core i7 Processor",
+                        "13.3-inch 4K OLED Touch Display",
+                        "360-degree Hinge",
+                        "Precision Glass Trackpad"
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "ASUS ROG Zephyrus G14",
+                    description: "High-performance gaming laptop with powerful graphics and compact design",
+                    price: 1649.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "Limited Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-06",
+                    features: [
+                        "16GB DDR4 RAM",
+                        "1TB PCIe SSD",
+                        "AMD Ryzen 9 Processor",
+                        "14-inch QHD Display @ 120Hz",
+                        "NVIDIA GeForce RTX 3060",
+                        "RGB Backlit Keyboard"
+                    ]
+                },
+                {
+                    id: 7,
+                    title: "Lenovo Yoga Slim 7",
+                    description: "Lightweight and portable laptop ideal for productivity and entertainment",
+                    price: 999.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-07",
+                    features: [
+                        "8GB RAM",
+                        "512GB SSD",
+                        "AMD Ryzen 7 Processor",
+                        "14-inch Full HD Display",
+                        "Dolby Audio",
+                        "Fingerprint Reader"
+                    ]
+                },
+                {
+                    id: 8,
+                    title: "Acer Swift 3",
+                    description: "Affordable ultrabook with reliable performance and sleek design",
+                    price: 749.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "In Stock",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-07",
+                    features: [
+                        "8GB LPDDR4X RAM",
+                        "256GB NVMe SSD",
+                        "Intel Core i5 Processor",
+                        "14-inch Full HD Display",
+                        "Backlit Keyboard",
+                        "Lightweight Chassis"
+                    ]
+                },
+                {
+                    id: 9,
+                    title: "Microsoft Surface Laptop 5",
+                    description: "Premium laptop with a high-resolution touch display and seamless Windows integration",
+                    price: 1499.99,
+                    image: "https://via.placeholder.com/300x200",
+                    availability: "Pre-Order",
+                    category: "Office Electronics",
+                    dateAdded: "2023-10-08",
+                    features: [
+                        "16GB RAM",
+                        "512GB SSD",
+                        "Intel Core i7 Processor",
+                        "15-inch PixelSense Touch Display",
+                        "Windows 11",
+                        "Precision Hinge"
+                    ]
+                }
+            ];
+        this.filteredProducts = [...this.allProducts]; // Initialize with all products
         this.cart = [];
+        this.currentQuery = '';
+        this.currentSort = '';
+        this.currentFilter = 'all';
     }
 
     updateCartSummary() {
@@ -120,7 +220,7 @@ export default class extends AbstractView {
     async getHtml() {
         const productListHtml = `
             <div class="product-list">
-                ${this.products.map(product => `
+                ${this.filteredProducts.map(product => `
                     <div class="product card" data-product-id="${product.id}">
                         <div class="image">
                             <img src="${product.image}" alt="${product.title}">
@@ -166,9 +266,14 @@ export default class extends AbstractView {
                             <select name="filter">
                                 <option value="" disabled selected>Filter by</option>
                                 <option value="all">All</option>
-                                <option value="category1">Category 1</option>
-                                <option value="category2">Category 2</option>
-                                <option value="category3">Category 3</option>
+                                <option value="Writing Instruments">Writing Instruments</option>
+                                <option value="Paper Products">Paper Products</option>
+                                <option value="Office Electronics">Office Electronics</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Storage & Organization">Storage & Organization</option>
+                                <option value="Breakroom Supplies">Breakroom Supplies</option>
+                                <option value="Cleaning Supplies">Cleaning Supplies</option>
+                                <option value="Technology Accessories">Technology Accessories</option>
                             </select>
                         </div>
                     </div>
@@ -183,21 +288,21 @@ export default class extends AbstractView {
                     <div class="popup-content">
                         <span class="close">&times;</span>
                         <div class="popup-image">
-                            <img src="${this.products[0].image}" alt="${this.products[0].title}">
+                            <img src="${this.allProducts[0].image}" alt="${this.allProducts[0].title}">
                         </div>
                         <div class="popup-details">
-                            <h2 class="popup-title">${this.products[0].title}</h2>
-                            <p class="popup-price">$${this.products[0].price}</p>
+                            <h2 class="popup-title">${this.allProducts[0].title}</h2>
+                            <p class="popup-price">$${this.allProducts[0].price}</p>
                             <div class="popup-availability-category">
-                                <p class="popup-availability">${this.products[0].availability}</p>
-                                <p class="popup-category">${this.products[0].category}</p>
+                                <p class="popup-availability">${this.allProducts[0].availability}</p>
+                                <p class="popup-category">${this.allProducts[0].category}</p>
                             </div>
                             <h3>Description:</h3>
-                            <p class="popup-description">${this.products[0].description}</p>
+                            <p class="popup-description">${this.allProducts[0].description}</p>
                             <div class="popup-features">
                                 <h3>Features:</h3>
                                 <ul>
-                                    ${this.products[0].features.map(feature => `
+                                    ${this.allProducts[0].features.map(feature => `
                                         <li>${feature}</li>
                                     `).join('')}
                                 </ul>
@@ -266,6 +371,12 @@ export default class extends AbstractView {
         `;
     }
 
+    async render() {
+        const html = await this.getHtml();
+        document.querySelector('#app').innerHTML = html;
+        await this.afterRender();
+    }
+
     async afterRender() {
         const productCards = document.querySelectorAll('.product.card');
         const productPopup = document.getElementById('product-popup');
@@ -274,7 +385,7 @@ export default class extends AbstractView {
         productCards.forEach(card => {
             card.addEventListener('click', () => {
                 const productId = card.dataset.productId;
-                const product = this.products.find(p => p.id === parseInt(productId));
+                const product = this.allProducts.find(p => p.id === parseInt(productId));
                 
                 if (product) {
                     const popupContent = productPopup.querySelector('.popup-content');
@@ -308,7 +419,7 @@ export default class extends AbstractView {
                     productId = document.querySelector('.popup-content').dataset.productId;
                 }
 
-                const product = this.products.find(p => p.id === parseInt(productId));
+                const product = this.allProducts.find(p => p.id === parseInt(productId));
                 if (product) {
                     this.cart.push(product);
                     this.renderCartContent();
@@ -395,80 +506,125 @@ export default class extends AbstractView {
         const closeSuccessButton = document.querySelector('.close-popup');
         closeSuccessButton.addEventListener('click', () => {
             checkoutSuccess.style.display = 'none';
-            cartItems = 0;
-            cartNumber.textContent = cartItems;
-            // Add logic here to clear cart
+            this.cart = [];
+            this.updateCartSummary();
+            const cartNumber = document.querySelector('.cart-number');
+            if (cartNumber) {
+                cartNumber.textContent = '0';
+            }
         });
+
+        // Search Functionality
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            this.currentQuery = query;
+            this.applyFilters();
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim().toLowerCase();
+                this.currentQuery = query;
+                this.applyFilters();
+            }
+        });
+
+        // Sort Functionality
+        const sortSelect = document.querySelector('.sort select');
+        sortSelect.addEventListener('change', (e) => {
+            const sortOption = e.target.value;
+            this.currentSort = sortOption;
+            this.applyFilters();
+        });
+
+        // Filter Functionality
+        const filterSelect = document.querySelector('.filter select');
+        filterSelect.addEventListener('change', (e) => {
+            const filterOption = e.target.value;
+            this.currentFilter = filterOption;
+            this.applyFilters();
+        });
+    }
+
+    applyFilters() {
+        // Filter based on search query and selected category
+        this.filteredProducts = this.allProducts.filter(product => {
+            const matchesQuery = product.title.toLowerCase().includes(this.currentQuery) || 
+                                 product.description.toLowerCase().includes(this.currentQuery);
+            const matchesFilter = this.currentFilter === 'all' || 
+                                  product.category.toLowerCase() === this.currentFilter.toLowerCase();
+            return matchesQuery && matchesFilter;
+        });
+
+        // Sort the filtered products
+        switch(this.currentSort) {
+            case 'newest':
+                this.filteredProducts.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+                break;
+            case 'oldest':
+                this.filteredProducts.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+                break;
+            case 'price-low-high':
+                this.filteredProducts.sort((a, b) => a.price - b.price);
+                break;
+            case 'price-high-low':
+                this.filteredProducts.sort((a, b) => b.price - a.price);
+                break;
+            default:
+                // No sorting applied
+                break;
+        }
+
+        // Re-render the product list with the updated filteredProducts
+        this.render();
     }
 
     async submitForm(formData) {
         try {
-            // Generate a unique order ID
-            const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
-
-            // Construct the email body using form data
-            const emailBody = `
-                <div style="font-family: Arial, sans-serif;">
-                    <h2>New Order Submission</h2>
-                    <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
-                    <p><strong>Email:</strong> ${formData.email}</p>
-                    <p><strong>Address 1:</strong> ${formData.address1}</p>
-                    <p><strong>Address 2:</strong> ${formData.address2}</p>
-                    <p><strong>City:</strong> ${formData.city}</p>
-                    <p><strong>State:</strong> ${formData.state}</p>
-                    <p><strong>ZIP:</strong> ${formData.zip}</p>
-                    <p><strong>Payment Method:</strong> ${formData.paymentMethod}</p>
-                    <h3>Order Details:</h3>
-                    <ul>
-                        ${this.cart.map(item => `<li>${item.title} - $${item.price.toFixed(2)}</li>`).join('')}
-                    </ul>
-                    <p><strong>Total:</strong> $${this.cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
-                </div>
-            `;
-
-            // Send email to the company using the provided credentials
-            await Email.send({
-                SecureToken: "955149455BCB206F0C68232016929E1BF4ED1E3BD31FF2CB4C6A972B1A9E71608B90E494649EA473FA727F115A02752C",
-                To: 'info@businessdev.co.za',
-                From: 'andisanimudau101@gmail.com',
-                Subject: `New Order Submission #${orderId}`,
-                Body: emailBody
+            const response = await fetch('/send-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ formData: formData, cart: this.cart })
             });
-
-            // Optionally, send a confirmation email to the customer
-            const customerEmailBody = `
-                <div style="font-family: Arial, sans-serif;">
-                    <h2>Order Confirmation #${orderId}</h2>
-                    <p>Thank you for your order! Here are your order details:</p>
-                    ${emailBody}
-                    <p>We will contact you shortly with further information.</p>
-                </div>
-            `;
-
-            await Email.send({
-                SecureToken: "955149455BCB206F0C68232016929E1BF4ED1E3BD31FF2CB4C6A972B1A9E71608B90E494649EA473FA727F115A02752C",
-                To: formData.email,
-                From: 'andisanimudau101@gmail.com',
-                Subject: `Order Confirmation #${orderId}`,
-                Body: customerEmailBody
-            });
-
-            // Clear the cart and update the UI
-            this.cart = [];
-            this.updateCartSummary();
-
-            // Display a success popup or message
-            const checkoutSuccess = document.querySelector('.checkout-success-popup');
-            const orderIdElement = checkoutSuccess.querySelector('.order-id');
-            orderIdElement.textContent = orderId;
-            checkoutSuccess.style.display = 'flex';
-
-            return true;
-
+    
+            const result = await response.json();
+    
+            if (result.Sent && result.Sent.length > 0) {
+                // Clear the cart
+                this.cart = [];
+                this.updateCartSummary();
+    
+                // Clear all form fields
+                const form = document.querySelector('.checkout-form-popup form');
+                form.reset();
+    
+                // Hide checkout form
+                const checkoutForm = document.querySelector('.checkout-form-popup');
+                checkoutForm.style.display = 'none';
+    
+                // Display success popup with Order ID
+                const checkoutSuccess = document.querySelector('.checkout-success-popup');
+                const orderIdElement = checkoutSuccess.querySelector('.order-id');
+                orderIdElement.textContent = result.Sent[0].MessageID;
+                checkoutSuccess.style.display = 'flex';
+    
+                // Reset cart icon number
+                const cartNumber = document.querySelector('.cart-number');
+                if (cartNumber) {
+                    cartNumber.textContent = '0';
+                }
+            } else {
+                alert("There was an error processing your order. Please try again.");
+            }
         } catch (error) {
             console.error("Error submitting order:", error);
             alert("There was an error processing your order. Please try again.");
-            return false;
         }
     }
 }
+
