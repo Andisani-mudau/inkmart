@@ -125,6 +125,94 @@ app.post('/send-order', async (req, res) => {
   }
 });
 
+// New API endpoint to handle contact form submissions
+app.post('/send-contact', async (req, res) => {
+  const { email, message } = req.body;
+
+  if (!email || !message) {
+    return res.status(400).json({ error: 'Email and message are required.' });
+  }
+
+  // Generate a unique contact ID
+  const contactId = Math.random().toString(36).substr(2, 9).toUpperCase();
+
+  // Construct the email body using form data
+  const emailBody = `
+    <div style="font-family: Arial, sans-serif;">
+      <h2>New Contact Message #${contactId}</h2>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    </div>
+  `;
+
+  try {
+    // Send email to the business
+    await mailjetClient.post('send', { version: 'v3.1' }).request({
+      Messages: [
+        {
+          From: {
+            Email: 'andisanimudau101@gmail.com',
+            Name: 'Your Company Name'
+          },
+          To: [
+            {
+              Email: 'info@businessdev.co.za',
+              Name: 'Business'
+            }
+          ],
+          Subject: `New Contact Message #${contactId}`,
+          TextPart: 'New contact message received.',
+          HTMLPart: emailBody
+        }
+      ]
+    });
+
+    // Optionally, send a confirmation email to the user
+    const customerEmailBody = `
+      <div style="font-family: Arial, sans-serif;">
+        <h2>Message Received #${contactId}</h2>
+        <p>Thank you for reaching out to us! We have received your message and will get back to you shortly.</p>
+        <p><strong>Your Message:</strong></p>
+        <p>${message}</p>
+      </div>
+    `;
+
+    await mailjetClient.post('send', { version: 'v3.1' }).request({
+      Messages: [
+        {
+          From: {
+            Email: 'andisanimudau101@gmail.com',
+            Name: 'Your Company Name'
+          },
+          To: [
+            {
+              Email: email,
+              Name: 'Valued Customer'
+            }
+          ],
+          Subject: `We Received Your Message #${contactId}`,
+          TextPart: 'Thank you for contacting us.',
+          HTMLPart: customerEmailBody
+        }
+      ]
+    });
+
+    // Respond with success and contact ID
+    res.json({
+      Sent: [
+        {
+          Email: email,
+          MessageID: contactId
+        }
+      ]
+    });
+  } catch (error) {
+    console.error('Error sending contact email:', error.statusCode ? error.response.body : error);
+    res.status(500).json({ error: 'Failed to send contact email' });
+  }
+});
+
 // Server listening code
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

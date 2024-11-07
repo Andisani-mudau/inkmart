@@ -189,7 +189,7 @@ export default class extends AbstractView {
             </button>
         `;
 
-        // Update cart icon number
+        // Update cart icon number.
         document.querySelector('.cart-number').textContent = this.cart.length;
     }
 
