@@ -18,7 +18,8 @@ const mailjetClient = new Mailjet({
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+//const PORT = process.env.PORT || 3000;
+const PORT = "shoprite-server.onrender.com";
 
 // Middleware to parse JSON bodies
 app.use(express.json());
