@@ -1,0 +1,273 @@
+[
+
+    {
+        "id": 1,
+        "title": "Dell OptiPlex Desktop PC",
+        "description": "Business desktop computer with reliable performance",
+        "price": 15199.81,
+        "image": "https://img.freepik.com/premium-photo/telephone-booth-table_1048944-20293966.jpg?w=826",
+        "availability": "In Stock",
+        "category": "Computers",
+        "dateAdded": "2023-10-05",
+        "features": [
+            "16GB RAM",
+            "512GB SSD", 
+            "Intel Core i5 Processor",
+            "Windows 11 Pro",
+            "DVD-RW Drive",
+            "USB 3.0 Ports"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "HP LaserJet Pro M404dn",
+        "description": "High-speed monochrome laser printer for business",
+        "price": 5699.81,
+        "image": "https://tech.co.za/wp-content/uploads/2022/11/4003dn-500x375.png",
+        "availability": "In Stock", 
+        "category": "Printers",
+        "dateAdded": "2023-10-05",
+        "features": [
+            "40 ppm Print Speed",
+            "Automatic Duplex Printing",
+            "250-sheet Input Tray",
+            "Ethernet Connectivity",
+            "Monthly Duty Cycle: 80,000 pages",
+            "Energy Star Certified"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Xerox WorkCentre 6515",
+        "description": "Color multifunction copier for small to medium offices",
+        "price": 10449.81,
+        "image": "https://img.freepik.com/free-photo/woman-work-office-using-printer_23-2149456925.jpg?t=st=1731030320~exp=1731033920~hmac=f78fa155c04cc4dfe6edfb44f04753f7bf9561a2ca43889dc7f591e170a04c3f&w=360",
+        "availability": "In Stock",
+        "category": "Copiers",
+        "dateAdded": "2023-10-05",
+        "features": [
+            "Print, Copy, Scan, Fax",
+            "30 ppm Color/Mono",
+            "1200x2400 dpi Resolution",
+            "50-sheet ADF",
+            "5-inch Touchscreen",
+            "Mobile Printing Support"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Cisco IP Phone 8841",
+        "description": "Enterprise VoIP phone system with advanced features",
+        "price": 4749.81,
+        "image": "https://tech.co.za/wp-content/uploads/2024/02/T31W.png",
+        "availability": "In Stock",
+        "category": "Telecommunications",
+        "dateAdded": "2023-10-05",
+        "features": [
+            "5-inch High-res Display",
+            "HD Voice Quality",
+            "Gigabit Ethernet",
+            "Power over Ethernet",
+            "Advanced Security Features",
+            "10 Line Keys"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "SunPower X-Series Solar Panel",
+        "description": "High-efficiency commercial solar panels",
+        "price": 17099.81,
+        "image": "https://img.freepik.com/free-photo/close-up-hands-holding-eco-project_23-2148920633.jpg?t=st=1731030423~exp=1731034023~hmac=80dee41f6f36e08a89187a012ae1c7f004e38e157d271514ff83cab645b58de7&w=826",
+        "availability": "Limited Stock",
+        "category": "Solar Panels",
+        "dateAdded": "2023-10-06",
+        "features": [
+            "400W Output",
+            "22.8% Efficiency",
+            "25-year Warranty",
+            "Anti-reflective Glass",
+            "Weather-resistant Frame",
+            "Micro-inverter Compatible"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Canon imageRUNNER ADVANCE",
+        "description": "Professional-grade office copier with cloud connectivity",
+        "price": 66499.81,
+        "image": "https://tech.co.za/wp-content/uploads/2024/08/0958C040AA-1.webp",
+        "availability": "In Stock",
+        "category": "Copiers",
+        "dateAdded": "2023-10-06",
+        "features": [
+            "55 ppm Copy/Print Speed",
+            "Dual 1,500-sheet Trays",
+            "Cloud Integration",
+            "Advanced Security Features",
+            "10.1-inch Touchscreen",
+            "Mobile Printing"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Polycom VVX 450",
+        "description": "Business media phone with HD voice quality",
+        "price": 3799.81,
+        "image": "https://images.ctfassets.net/r6vlh4dr9f5y/2048393/8645ae78923d498057e8d64193c2b490/VVX450-page-hero-image.jpg?fm=webp&fit=fill&f=center&w=1248&h=1472",
+        "availability": "In Stock",
+        "category": "Telecommunications",
+        "dateAdded": "2023-10-07",
+        "features": [
+            "4.3-inch Color Display",
+            "12 Line Keys",
+            "HD Voice Technology",
+            "Dual USB Ports",
+            "Gigabit Ethernet",
+            "Microsoft Teams Compatible"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "LG NeON 2 Solar Panel",
+        "description": "High-performance residential solar panel system",
+        "price": 14249.81,
+        "image": "https://tech.co.za/wp-content/uploads/2023/10/phpThumb.jpg",
+        "availability": "In Stock",
+        "category": "Solar Panels",
+        "dateAdded": "2023-10-07",
+        "features": [
+            "365W Output",
+            "21.1% Efficiency",
+            "25-year Performance Warranty",
+            "Enhanced Performance on Cloudy Days",
+            "Double-sided Cell Structure",
+            "Wind/Snow Load Resistant"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Epson WorkForce Pro WF-C579R",
+        "description": "High-volume business printer with replaceable ink pack system",
+        "price": 30399.81,
+        "image": "https://tech.co.za/wp-content/uploads/2024/09/c11cg04402sa-multifunctional-printers-28213968765092.jpg",
+        "availability": "In Stock",
+        "category": "Printers",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "24 ppm Color/Black",
+            "High-capacity Ink Packs",
+            "4800x1200 dpi Resolution",
+            "500-sheet Paper Capacity",
+            "Wireless Printing",
+            "PrecisionCore Technology"
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Brother MFC-L9570CDW",
+        "description": "Advanced all-in-one color laser printer for enterprise",
+        "price": 25899.81,
+        "image": "https://tech.co.za/wp-content/uploads/2021/03/MFC-L9570CDW-a.jpg", 
+        "availability": "In Stock",
+        "category": "Printers",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "33 ppm Print Speed",
+            "Advanced Security Features",
+            "7-inch Touchscreen",
+            "NFC Card Reader",
+            "Super High-yield Toners",
+            "Advanced Scanning Capabilities"
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Lenovo ThinkCentre M720",
+        "description": "Compact business desktop with powerful performance",
+        "price": 18499.81,
+        "image": "https://www.supercomm.co.za/cdn/shop/files/desktop-computers-lenovo-thinkcentre-m700-intel-i5-6th-gen-desktop-pc-with-8gb-ram-1.png?v=1695435522&width=600",
+        "availability": "In Stock",
+        "category": "Computers",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "Intel Core i7 Processor",
+            "32GB RAM",
+            "1TB NVMe SSD",
+            "Windows 11 Pro",
+            "Multiple Display Support",
+            "TPM Security Chip"
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Canon imageRUNNER C3125i",
+        "description": "Smart multifunction color copier for medium offices",
+        "price": 22799.81,
+        "image": "https://tech.co.za/wp-content/uploads/2024/08/2315C056AA.jpg",
+        "availability": "In Stock",
+        "category": "Copiers",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "25 ppm Color/Black",
+            "5-inch Color Touchscreen",
+            "Cloud Integration",
+            "Mobile Printing",
+            "Automatic Document Feeder",
+            "Enhanced Security Features"
+        ]
+    },
+    {
+        "id": 13,
+        "title": "SolarEdge HD-Wave Inverter",
+        "description": "Advanced solar inverter with superior efficiency",
+        "price": 16899.81,
+        "image": "https://tech.co.za/wp-content/uploads/2023/12/SOL_I_AX_1VP_1.jpg",
+        "availability": "In Stock",
+        "category": "Solar Panels",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "99% Efficiency Rating",
+            "Built-in Monitoring",
+            "SafeDC Technology",
+            "Extended Warranty",
+            "Compact Design",
+            "Smart Energy Management"
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Lenovo ThinkCentre Workstation",
+        "description": "Professional workstation for demanding applications",
+        "price": 25999.81,
+        "image": "https://www.supercomm.co.za/cdn/shop/files/Dell-OptiPlex-3050-Tower-Front-Left-2048x2048.png?v=1707992723&width=600", 
+        "availability": "In Stock",
+        "category": "Computers",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "AMD Ryzen 9 Processor",
+            "64GB DDR4 RAM",
+            "2TB NVMe SSD",
+            "NVIDIA RTX 4000 Graphics",
+            "Tool-less Design",
+            "Enterprise Security Features"
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Fronius Symo Solar Inverter",
+        "description": "Commercial grade three-phase solar inverter",
+        "price": 19999.81,
+        "image": "https://tech.co.za/wp-content/uploads/2023/05/BBONE-024S.png",
+        "availability": "In Stock",
+        "category": "Solar Panels",
+        "dateAdded": "2023-10-08",
+        "features": [
+            "98.1% Maximum Efficiency",
+            "Dynamic Peak Manager",
+            "Integrated WLAN",
+            "Smart Grid Ready",
+            "Arc Fault Protection",
+            "Advanced Cooling System"
+        ]
+    }
+]

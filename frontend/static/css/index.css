@@ -813,6 +813,7 @@ footer{
 .company-logo {
   height: 80px; /* Set height of logos, width adjusts automatically */
   min-width: 287px;
+  max-width: 287px;
   opacity: 0.8; /* Slight transparency */
   filter: grayscale(100%); /* Converts the logo to full grayscale */
   filter: brightness(100%);
@@ -823,6 +824,8 @@ footer{
 
 .company-logo img{
   height: 100%;
+  width: 100%;
+  
 }
 @keyframes scroll {
   0% {
@@ -905,6 +908,8 @@ footer{
 }
 .blog .holder .card .image img{
     height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .blog .holder .card .content{
     
@@ -1233,6 +1238,8 @@ summary::-webkit-details-marker {
 }
 .offers .product-list .card .image img{
   height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .offers .product-list .card .content{
   
@@ -1248,6 +1255,10 @@ summary::-webkit-details-marker {
 }
 .offers .product-list .card .content p{
   mask-image: linear-gradient(to bottom, transparent, black 0%, black 50%, transparent); /* Fade effect on edges */
+}
+#product-price{
+  mask-image: unset;
+  background-color: var(--primary-color-700);
 }
 .offers .product-list .card a{   
   position: absolute;
@@ -1729,6 +1740,8 @@ top: unset; /* Move it 50% down */
 }
 .card-view .image img{
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .card-view .content{
   
@@ -1800,9 +1813,11 @@ top: unset; /* Move it 50% down */
   flex-direction: column;
   align-items: start;
   justify-content: start;
+  text-wrap: wrap;
+  overflow: hidden;
 }
 #card-1 .content, #card-2 .content, #card-3 .content, #card-4 .content, #card-5 .content, #card-6 .content{
-  width: 100%;
+  
   padding: var(--size-3);
   display: flex;
   flex-direction: column;
@@ -1815,6 +1830,6 @@ top: unset; /* Move it 50% down */
   font-size: var(--font-size-3);
 }
 #card-1 .comment, #card-2 .comment, #card-3 .comment, #card-4 .comment, #card-5 .comment, #card-6 .comment{
-  width: 100%;
+  
   padding: 0 var(--size-3);
 }

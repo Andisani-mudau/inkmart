@@ -4,23 +4,48 @@ export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.postId = params.id;
+        console.log('Received postId:', this.postId);
         this.setTitle("Viewing blog");
     }
 
     async getHtml() {
-        return `
-        <div class="card-view-holder">
-            <div class="card-view">
-                <div class="image">
-                    <img src="https://img.freepik.com/free-photo/advisor-agent-sitting-desk-table-startup-office-analyzing-financial-graphs-report-typing-company-strategy-african-american-businessman-working-overtime-investment-report-business-concept_482257-66470.jpg?t=st=1728705044~exp=1728708644~hmac=09249d25df7b873825d535fe44d50e9fd6a3c3294eb16141e8ab303e8cac9bf7&w=826" alt="">
+        try {
+            // Fetch all blogs data
+            const response = await fetch('/static/data/blogs.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const blogs = await response.json();
+
+            //console.log('All blogs:', blogs);
+            //console.log('Looking for blog with id:', this.postId);
+
+            // Convert this.postId to number for comparison
+            const blog = blogs.find(b => b.id === parseInt(this.postId));
+            //console.log('Found blog:', blog);
+
+            if (!blog) {
+                return `<div class="error">Blog not found. ID: ${this.postId}</div>`;
+            }
+
+            // Generate HTML based on the found blog data
+            return `
+                <div class="card-view-holder">
+                    <div class="card-view">
+                        <div class="image">
+                            <img src="${blog.image}" alt="${blog.title}">
+                        </div>
+                        <div class="content">
+                            <h2>${blog.title}</h2>
+                            <p>${blog.content || blog.summary}</p>
+                        </div>
+                        <a href="/blog" class="cardLink" data-link><i class='bx bx-arrow-back'></i> Back to Blogs</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <h2>Blog Heading Here</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt harum quo expedita reiciendis suscipit voluptatem illo, neque, tempora iusto corrupti consequuntur culpa!</p>
-                </div>
-                <a href="/blog" class="cardLink" data-link><i class='bx bx-arrow-back'></i> Back to Blogs</a>
-            </div>
-        </div>
-        `;
+            `;
+        } catch (error) {
+            console.error('Error fetching blog data:', error);
+            return `<div class="error">Failed to load the blog. Please try again later.</div>`;
+        }
     }
 }

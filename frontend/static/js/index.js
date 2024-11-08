@@ -22,6 +22,9 @@ const navigateTo = url => {
 };
 
 const router = async () => {
+    // Reset scroll position when navigating to a new view
+    window.scrollTo(0, 0);
+
     // Define the routes for the single-page application
     // Each route object contains a path and its corresponding view component
     const routes = [

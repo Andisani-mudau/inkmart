@@ -9,28 +9,12 @@ export default class extends AbstractView {
 
     async getHtml() {
         try {
-            // Internal JSON data representing the blogs with placeholder images
-            const blogs = [
-                {
-                    "id": 1,
-                    "title": "Understanding JavaScript Closures",
-                    "summary": "A deep dive into closures, one of JavaScript's most powerful features.",
-                    "image": "https://via.placeholder.com/300x200"
-                },
-                {
-                    "id": 2,
-                    "title": "A Guide to CSS Flexbox",
-                    "summary": "Learn how to create flexible and responsive layouts with Flexbox.",
-                    "image": "https://via.placeholder.com/300x200"
-                },
-                {
-                    "id": 3,
-                    "title": "Introduction to React Hooks",
-                    "summary": "Simplify your React code with Hooks for state and lifecycle management.",
-                    "image": "https://via.placeholder.com/300x200"
-                }
-                // Add more blog objects as needed
-            ];
+            // Fetch external JSON data representing the blogs
+            const response = await fetch('static/data/blogs.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const blogs = await response.json();
 
             // Generate HTML for each blog card dynamically
             const blogCards = blogs.map(blog => `

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "stars": 4,
+        "text": "I really appreciate the prompt customer service. Every inquiry I had was addressed swiftly and professionally, ensuring that my experience was seamless from start to finish."
+    },
+    {
+        "id": 2,
+        "stars": 5,
+        "text": "The product quality exceeded my expectations. Not only did the items arrive on time, but they also matched the descriptions perfectly, showcasing the company's commitment to excellence."
+    },
+    {
+        "id": 3,
+        "stars": 3.5,
+        "text": "The support team was very helpful and responsive. They guided me through the installation process and provided valuable tips to optimize the product's performance."
+    },
+    {
+        "id": 4,
+        "stars": 4.5,
+        "text": "Delivered quickly and well-packaged. I was impressed by the attention to detail in the packaging, which ensured that all components arrived in perfect condition."
+    },
+    {
+        "id": 5,
+        "stars": 4.5,
+        "text": "Excellent value for the price paid. The features offered are unparalleled in the market, making it a worthwhile investment for anyone looking for quality and reliability."
+    },
+    {
+        "id": 6,
+        "stars": 2.5,
+        "text": "The interface is user-friendly and intuitive. Navigating through the application is a breeze, allowing even first-time users to get started without any hassle."
+    }
+]
