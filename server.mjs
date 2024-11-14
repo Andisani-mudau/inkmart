@@ -19,6 +19,7 @@ const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+//const PORT = "shoprite-server.onrender.com";
 
 // Middleware to parse JSON bodies
 app.use(express.json());
