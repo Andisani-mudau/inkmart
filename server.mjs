@@ -4,18 +4,18 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import Mailjet from 'node-mailjet';
+import SibApiV3Sdk from '@getbrevo/brevo';
 import bodyParser from 'body-parser';
 
 // __dirname replacement in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Initialize Mailjet with the new syntax
-const mailjetClient = new Mailjet({
-  apiKey: process.env.MJ_APIKEY_PUBLIC,
-  apiSecret: process.env.MJ_APIKEY_PRIVATE
-});
+// Initialize Brevo with the new syntax
+const defaultClient = SibApiV3Sdk.ApiClient.instance;
+const apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.BREVO_API_KEY;
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,12 +49,8 @@ app.get('/send-newsletter', (req, res) => {
 // API endpoint to handle order emails
 app.post('/send-order', async (req, res) => {
   const { formData, cart } = req.body;
-
-
-  // Generate a unique order ID
   const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
-
-  // Construct the email body using form data and cart items
+  
   const emailBody = `
     <div style="font-family: Arial, sans-serif;">
       <h2>New Order Submission #${orderId}</h2>
@@ -68,200 +64,117 @@ app.post('/send-order', async (req, res) => {
       <p><strong>Payment Method:</strong> ${formData.paymentMethod}</p>
       <h3>Order Details:</h3>
       <ul>
-        ${cart.map(item => `<li>${item.title} - $${item.price.toFixed(2)}</li>`).join('')}
+        ${cart.map(item => `<li>${item.title} - R${item.price.toFixed(2)}</li>`).join('')}
       </ul>
-      <p><strong>Total:</strong> $${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
-    </div>
-  `;
-
-  // Construct the customer confirmation email
-  const customerEmailBody = `
-    <div style="font-family: Arial, sans-serif;">
-      <h2>Order Confirmation #${orderId}</h2>
-      <p>Thank you for your order! Here are your order details:</p>
-      ${emailBody}
-      <p>We will contact you shortly with further information.</p>
+      <p><strong>Total:</strong> R${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
     </div>
   `;
 
   try {
-    // Send email to the business
-    await mailjetClient.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: 'andisanimudau101@gmail.com',
-            Name: 'Your Company Name'
-          },
-          To: [
-            {
-              Email: 'info@businessdev.co.za',
-              Name: 'Business'
-            }
-          ],
-          Subject: `New Order Submission #${orderId}`,
-          TextPart: 'New order received.',
-          HTMLPart: emailBody
-        }
-      ]
-    });
+    // Business email
+    const businessEmail = new SibApiV3Sdk.SendSmtpEmail();
+    businessEmail.subject = `New Order Submission #${orderId}`;
+    businessEmail.htmlContent = emailBody;
+    businessEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    businessEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
 
-    // Send confirmation email to the customer
-    await mailjetClient.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: 'andisanimudau101@gmail.com',
-            Name: 'Your Company Name'
-          },
-          To: [
-            {
-              Email: formData.email,
-              Name: `${formData.firstName} ${formData.lastName}`
-            }
-          ],
-          Subject: `Order Confirmation #${orderId}`,
-          TextPart: 'Thank you for your order.',
-          HTMLPart: customerEmailBody
-        }
-      ]
-    });
+    // Customer email
+    const customerEmail = new SibApiV3Sdk.SendSmtpEmail();
+    customerEmail.subject = `Order Confirmation #${orderId}`;
+    customerEmail.htmlContent = customerEmailBody;
+    customerEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    customerEmail.to = [{ email: formData.email, name: `${formData.firstName} ${formData.lastName}` }];
 
-    // Respond with success and order ID
+    await Promise.all([
+      apiInstance.sendTransacEmail(businessEmail),
+      apiInstance.sendTransacEmail(customerEmail)
+    ]);
+
     res.json({
-      Sent: [
-        {
-          Email: formData.email,
-          MessageID: orderId
-        }
-      ]
+      Sent: [{ Email: formData.email, MessageID: orderId }]
     });
   } catch (error) {
-    console.error('Error sending email:', error.statusCode ? error.response.body : error);
+    console.error('Error sending email:', error);
     res.status(500).json({ error: 'Failed to send email' });
   }
 });
 
 // New endpoint to handle Contact Form submissions
 app.post('/send-contact', async (req, res) => {
-    const { email, message } = req.body;
+  const { email, message } = req.body;
 
-    const emailBody = `
-        <div style="font-family: Arial, sans-serif;">
-            <h2>New Contact Message</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message}</p>
-        </div>
+  try {
+    const sendEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendEmail.subject = `New Contact Message from ${email}`;
+    sendEmail.htmlContent = `
+      <div style="font-family: Arial, sans-serif;">
+        <h2>New Contact Message</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      </div>
     `;
+    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    sendEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
 
-    try {
-        await mailjetClient.post('send', { version: 'v3.1' }).request({
-            Messages: [
-                {
-                    From: {
-                        Email: 'andisanimudau101@gmail.com',
-                        Name: 'Your Company Name'
-                    },
-                    To: [
-                        {
-                            Email: 'info@businessdev.co.za',
-                            Name: 'Business'
-                        }
-                    ],
-                    Subject: `New Contact Message from ${email}`,
-                    TextPart: 'You have received a new contact message.',
-                    HTMLPart: emailBody
-                }
-            ]
-        });
-
-        res.json({ message: 'Contact message sent successfully!' });
-    } catch (error) {
-        console.error('Error sending contact email:', error.statusCode ? error.response.body : error);
-        res.status(500).json({ error: 'Failed to send contact message' });
-    }
+    await apiInstance.sendTransacEmail(sendEmail);
+    res.json({ message: 'Contact message sent successfully!' });
+  } catch (error) {
+    console.error('Error sending contact email:', error);
+    res.status(500).json({ error: 'Failed to send contact message' });
+  }
 });
 
 // New endpoint to handle Rating Form submissions
 app.post('/send-rating', async (req, res) => {
-    const { rating, email, comments } = req.body;
+  const { rating, email, comments } = req.body;
 
-    const emailBody = `
-        <div style="font-family: Arial, sans-serif;">
-            <h2>New Customer Rating</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Rating:</strong> ${rating} / 5</p>
-            <p><strong>Comments:</strong></p>
-            <p>${comments}</p>
-        </div>
+  try {
+    const sendEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendEmail.subject = `New Customer Rating from ${email}`;
+    sendEmail.htmlContent = `
+      <div style="font-family: Arial, sans-serif;">
+        <h2>New Customer Rating</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Rating:</strong> ${rating} / 5</p>
+        <p><strong>Comments:</strong></p>
+        <p>${comments}</p>
+      </div>
     `;
+    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    sendEmail.to = [{ email: 'feedback@businessdev.co.za', name: 'Business Feedback' }];
 
-    try {
-        await mailjetClient.post('send', { version: 'v3.1' }).request({
-            Messages: [
-                {
-                    From: {
-                        Email: 'andisanimudau101@gmail.com',
-                        Name: 'Your Company Name'
-                    },
-                    To: [
-                        {
-                            Email: 'feedback@businessdev.co.za',
-                            Name: 'Business Feedback'
-                        }
-                    ],
-                    Subject: `New Customer Rating from ${email}`,
-                    TextPart: 'You have received a new customer rating.',
-                    HTMLPart: emailBody
-                }
-            ]
-        });
-
-        res.json({ message: 'Rating submitted successfully!' });
-    } catch (error) {
-        console.error('Error sending rating email:', error.statusCode ? error.response.body : error);
-        res.status(500).json({ error: 'Failed to submit rating' });
-    }
+    await apiInstance.sendTransacEmail(sendEmail);
+    res.json({ message: 'Rating submitted successfully!' });
+  } catch (error) {
+    console.error('Error sending rating email:', error);
+    res.status(500).json({ error: 'Failed to submit rating' });
+  }
 });
 
 // New endpoint to handle Newsletter Subscriptions
 app.post('/send-newsletter', async (req, res) => {
-    const { email } = req.body;
-    const emailBody = `
-        <div style="font-family: Arial, sans-serif;">
-            <h2>New Newsletter Subscription</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p>Thank you for subscribing to our newsletter!</p>
-        </div>
+  const { email } = req.body;
+
+  try {
+    const sendEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendEmail.subject = 'Newsletter Subscription Confirmation';
+    sendEmail.htmlContent = `
+      <div style="font-family: Arial, sans-serif;">
+        <h2>New Newsletter Subscription</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <p>Thank you for subscribing to our newsletter!</p>
+      </div>
     `;
+    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    sendEmail.to = [{ email: email, name: 'Subscriber' }];
 
-    try {
-        await mailjetClient.post('send', { version: 'v3.1' }).request({
-            Messages: [
-                {
-                    From: {
-                        Email: 'andisanimudau101@gmail.com',
-                        Name: 'Your Company Name'
-                    },
-                    To: [
-                        {
-                            Email: email,
-                            Name: 'Subscriber'
-                        }
-                    ],
-                    Subject: 'Subscription Confirmation',
-                    TextPart: 'Thank you for subscribing to our newsletter.',
-                    HTMLPart: emailBody
-                }
-            ]
-        });
-
-        res.json({ message: 'Newsletter subscription successful!' });
-    } catch (error) {
-        console.error('Error sending newsletter email:', error.statusCode ? error.response.body : error);
-        res.status(500).json({ error: 'Failed to subscribe to newsletter' });
-    }
+    await apiInstance.sendTransacEmail(sendEmail);
+    res.json({ message: 'Newsletter subscription successful!' });
+  } catch (error) {
+    console.error('Error sending newsletter email:', error);
+    res.status(500).json({ error: 'Failed to subscribe to newsletter' });
+  }
 });
 
 // Server listening code
