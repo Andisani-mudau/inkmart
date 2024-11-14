@@ -76,14 +76,14 @@ app.post('/send-order', async (req, res) => {
     const businessEmail = new SibApiV3Sdk.SendSmtpEmail();
     businessEmail.subject = `New Order Submission #${orderId}`;
     businessEmail.htmlContent = emailBody;
-    businessEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
-    businessEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
+    businessEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
+    businessEmail.to = [{ email: 'andisanimudau101@gmail.com', name: 'Business' }];
 
     // Customer email
     const customerEmail = new SibApiV3Sdk.SendSmtpEmail();
     customerEmail.subject = `Order Confirmation #${orderId}`;
     customerEmail.htmlContent = customerEmailBody;
-    customerEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
+    customerEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
     customerEmail.to = [{ email: formData.email, name: `${formData.firstName} ${formData.lastName}` }];
 
     await Promise.all([
@@ -115,8 +115,8 @@ app.post('/send-contact', async (req, res) => {
         <p>${message}</p>
       </div>
     `;
-    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
-    sendEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
+    sendEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
+    sendEmail.to = [{ email: 'andisanimudau101@gmail.com', name: 'Business' }];
 
     await apiInstance.sendTransacEmail(sendEmail);
     res.json({ message: 'Contact message sent successfully!' });
@@ -129,9 +129,12 @@ app.post('/send-contact', async (req, res) => {
 // New endpoint to handle Rating Form submissions
 app.post('/send-rating', async (req, res) => {
   const { rating, email, comments } = req.body;
+  
+  console.log('Received rating submission:', { rating, email, comments });
 
   try {
     const sendEmail = new SibApiV3Sdk.SendSmtpEmail();
+    
     sendEmail.subject = `New Customer Rating from ${email}`;
     sendEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif;">
@@ -142,14 +145,27 @@ app.post('/send-rating', async (req, res) => {
         <p>${comments}</p>
       </div>
     `;
-    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
-    sendEmail.to = [{ email: 'customer@businessdev.co.za', name: 'Business Feedback' }];
+    sendEmail.sender = { 
+      name: 'businessdev.', 
+      email: 'info@businessdev.co.za'  // Make sure this is verified in Brevo
+    };
+    sendEmail.to = [{ 
+      email: 'andisanimudau101@gmail.com',  // Make sure this is the correct email
+      name: 'Business Feedback' 
+    }];
 
-    await apiInstance.sendTransacEmail(sendEmail);
+    console.log('Attempting to send email with config:', sendEmail);
+
+    const result = await apiInstance.sendTransacEmail(sendEmail);
+    console.log('Email sent successfully:', result);
+
     res.json({ message: 'Rating submitted successfully!' });
   } catch (error) {
-    console.error('Error sending rating email:', error);
-    res.status(500).json({ error: 'Failed to submit rating' });
+    console.error('Detailed error sending rating email:', error.response?.text || error);
+    res.status(500).json({ 
+      error: 'Failed to submit rating',
+      details: error.message
+    });
   }
 });
 
@@ -167,7 +183,7 @@ app.post('/send-newsletter', async (req, res) => {
         <p>Thank you for subscribing to our newsletter!</p>
       </div>
     `;
-    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
+    sendEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
     sendEmail.to = [{ email: email, name: 'Subscriber' }];
 
     await apiInstance.sendTransacEmail(sendEmail);
