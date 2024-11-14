@@ -76,14 +76,14 @@ app.post('/send-order', async (req, res) => {
     const businessEmail = new SibApiV3Sdk.SendSmtpEmail();
     businessEmail.subject = `New Order Submission #${orderId}`;
     businessEmail.htmlContent = emailBody;
-    businessEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    businessEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
     businessEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
 
     // Customer email
     const customerEmail = new SibApiV3Sdk.SendSmtpEmail();
     customerEmail.subject = `Order Confirmation #${orderId}`;
     customerEmail.htmlContent = customerEmailBody;
-    customerEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    customerEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
     customerEmail.to = [{ email: formData.email, name: `${formData.firstName} ${formData.lastName}` }];
 
     await Promise.all([
@@ -115,7 +115,7 @@ app.post('/send-contact', async (req, res) => {
         <p>${message}</p>
       </div>
     `;
-    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
     sendEmail.to = [{ email: 'info@businessdev.co.za', name: 'Business' }];
 
     await apiInstance.sendTransacEmail(sendEmail);
@@ -142,8 +142,8 @@ app.post('/send-rating', async (req, res) => {
         <p>${comments}</p>
       </div>
     `;
-    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
-    sendEmail.to = [{ email: 'feedback@businessdev.co.za', name: 'Business Feedback' }];
+    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
+    sendEmail.to = [{ email: 'customer@businessdev.co.za', name: 'Business Feedback' }];
 
     await apiInstance.sendTransacEmail(sendEmail);
     res.json({ message: 'Rating submitted successfully!' });
@@ -167,7 +167,7 @@ app.post('/send-newsletter', async (req, res) => {
         <p>Thank you for subscribing to our newsletter!</p>
       </div>
     `;
-    sendEmail.sender = { name: 'Your Company Name', email: 'andisanimudau101@gmail.com' };
+    sendEmail.sender = { name: 'businessdev.', email: 'andisanimudau101@gmail.com' };
     sendEmail.to = [{ email: email, name: 'Subscriber' }];
 
     await apiInstance.sendTransacEmail(sendEmail);
