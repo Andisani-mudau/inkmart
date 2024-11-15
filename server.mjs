@@ -71,32 +71,55 @@ app.post('/send-order', async (req, res) => {
     </div>
   `;
 
+  const customerEmailBody = `
+    <div style="font-family: Arial, sans-serif;">
+      <h2>Order Confirmation #${orderId}</h2>
+      <p>Dear ${formData.firstName} ${formData.lastName},</p>
+      <p>Thank you for your order! Here are your order details:</p>
+      <h3>Order Summary:</h3>
+      <ul>
+        ${cart.map(item => `<li>${item.title} - R${item.price.toFixed(2)}</li>`).join('')}
+      </ul>
+      <p><strong>Total:</strong> R${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
+      <p>We will process your order shortly.</p>
+    </div>
+  `;
+
   try {
-    // Business email
-    const businessEmail = new SibApiV3Sdk.SendSmtpEmail();
-    businessEmail.subject = `New Order Submission #${orderId}`;
-    businessEmail.htmlContent = emailBody;
-    businessEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
-    businessEmail.to = [{ email: 'andisanimudau101@gmail.com', name: 'Business' }];
+    // Business email setup
+    const businessEmail = {
+      to: [{ email: 'andisanimudau101@gmail.com', name: 'Business' }],
+      subject: `New Order Submission #${orderId}`,
+      htmlContent: emailBody,
+      sender: { name: 'businessdev.', email: 'info@businessdev.co.za' }
+    };
 
-    // Customer email
-    const customerEmail = new SibApiV3Sdk.SendSmtpEmail();
-    customerEmail.subject = `Order Confirmation #${orderId}`;
-    customerEmail.htmlContent = customerEmailBody;
-    customerEmail.sender = { name: 'businessdev.', email: 'info@businessdev.co.za' };
-    customerEmail.to = [{ email: formData.email, name: `${formData.firstName} ${formData.lastName}` }];
+    // Customer email setup
+    const customerEmail = {
+      to: [{ email: formData.email, name: `${formData.firstName} ${formData.lastName}` }],
+      subject: `Order Confirmation #${orderId}`,
+      htmlContent: customerEmailBody,
+      sender: { name: 'businessdev.', email: 'info@businessdev.co.za' }
+    };
 
-    await Promise.all([
+    // Send both emails
+    const [businessResult, customerResult] = await Promise.all([
       apiInstance.sendTransacEmail(businessEmail),
       apiInstance.sendTransacEmail(customerEmail)
     ]);
 
+    console.log('Emails sent successfully:', { businessResult, customerResult });
+
     res.json({
+      success: true,
       Sent: [{ Email: formData.email, MessageID: orderId }]
     });
   } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Failed to send email' });
+    console.error('Error sending email:', error.response?.text || error);
+    res.status(500).json({ 
+      error: 'Failed to send email',
+      details: error.message 
+    });
   }
 });
 
