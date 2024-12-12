@@ -74,4 +74,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     router();
+
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.navLinks2__menu');
+    const mobileNav = document.querySelector('.navLinks2');
+
+    menuButton.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !menuButton.contains(e.target)) {
+            mobileNav.classList.remove('active');
+        }
+    });
 });

@@ -246,6 +246,7 @@ footer{
     right: var(--size-2);
     padding: var(--size-3);
     display: flex;
+    flex-wrap: wrap;
     gap: var(--size-4);
     align-items: center;
     justify-content: center;
@@ -1832,4 +1833,119 @@ top: unset; /* Move it 50% down */
 #card-1 .comment, #card-2 .comment, #card-3 .comment, #card-4 .comment, #card-5 .comment, #card-6 .comment{
   
   padding: 0 var(--size-3);
+}
+
+/* Hide navLinks2 by default (desktop view) */
+.navLinks2 {
+    display: none;
+}
+.navLinks2__menu{
+  display: none;
+}
+/* Mobile navigation styles */
+@media screen and (max-width: 768px) {
+    /* .navLinks {
+        display: none;
+    } */
+    nav{
+      position: fixed;
+      top: var(--size-2);
+      left: unset;
+      right: var(--size-2);
+      z-index: 300;
+      padding: var(--size-5) var(--size-5);
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+      backdrop-filter: blur(10px); /* Blurs background */
+      background: rgba(0, 0, 0, 0.2); /* Transparent white */
+      border-radius: var(--border-radius-2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.514); /* Soft shadow */
+      border: 1px solid rgba(95, 95, 95, 0.205); /* Subtle border */
+  }
+  .mainLogo{
+    position: absolute;
+    top: var(--size-2);
+    left: var(--size-2);
+    z-index: 3001;
+    display: none;
+  }
+    .navLinks{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: var(--size-5);
+      margin-right: var(--size-8);
+      width: 100%;
+  }
+  .navLinks a{
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      width: 100%;
+  }
+  .navLinks a::before{
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: calc(100% + 60px);
+      height: calc(100% + 20px);
+      background-color: rgba(0, 0, 0, 0.2); /* Transparent black */
+      z-index: -1; /* Sends the box behind the main div */
+      border-radius: var(--border-radius-3);
+      opacity: 0; /* Start hidden */
+      transition: all 0.3s ease;
+  }
+  .navLinks a:hover::before {
+      opacity: 1; /* Make the pseudo-element visible */
+      filter: blur(10px); /* Add blur when hovered */
+      background-color: var(--primary-color-700); /* Slightly darken */
+  }
+    /* .navLinks2 {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        padding: var(--size-8) var(--size-4);
+        transition: right 0.3s ease;
+        z-index: 400;
+    }
+
+    .navLinks2.active {
+        right: 0;
+    }
+
+    .navLinks2__menu {
+        display: block;
+        position: absolute;
+        top: var(--size-3);
+        right: var(--size-3);
+        background: none;
+        border: none;
+        color: var(--tertiary-color-100);
+        cursor: pointer;
+        font-size: var(--font-size-2);
+        z-index: 401;
+    }
+
+    .navLinks2 a {
+        padding: var(--size-3) 0;
+        font-size: var(--font-size-3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navLinks2 a:last-child {
+        border-bottom: none;
+    } */
+
 }
